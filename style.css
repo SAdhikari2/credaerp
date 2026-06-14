@@ -873,6 +873,183 @@ footer {
     box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
 }
 
+/* Watch Demo Videos Section */
+.videos-section {
+    padding: 5rem 0;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.video-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(16px);
+    transition: var(--transition-smooth);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.video-card:hover {
+    border-color: var(--border-color-active);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(37, 99, 235, 0.1);
+}
+
+.video-thumbnail-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.video-card:hover .video-thumbnail {
+    transform: scale(1.05);
+}
+
+.video-play-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(11, 17, 32, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+    transition: var(--transition-smooth);
+}
+
+.video-card:hover .video-play-overlay {
+    background: rgba(11, 17, 32, 0.6);
+    opacity: 1;
+}
+
+.video-play-btn {
+    width: 56px;
+    height: 56px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(8px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: var(--transition-smooth);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.video-play-btn svg {
+    margin-left: 3px; /* visual alignment offset for triangle */
+    transition: transform 0.3s ease;
+}
+
+.video-card:hover .video-play-btn {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(37, 99, 235, 0.6);
+}
+
+.video-card:hover .video-play-btn svg {
+    transform: scale(1.1);
+}
+
+.video-duration {
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    background: rgba(9, 13, 22, 0.85);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #fff;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.video-info {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.video-info h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    transition: var(--transition-smooth);
+}
+
+.video-card:hover .video-info h3 {
+    color: #fff;
+}
+
+.video-info p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+/* Video Modal Specific */
+.video-modal-content {
+    background: #000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    width: 90%;
+    max-width: 850px;
+    position: relative;
+    transform: scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9);
+}
+
+.modal-overlay.active .video-modal-content {
+    transform: scale(1);
+}
+
+.video-player-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.video-player-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video-modal-close {
+    transition: var(--transition-smooth);
+}
+
+.video-modal-close:hover {
+    color: var(--color-primary) !important;
+    transform: scale(1.1);
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .features-grid {
@@ -880,6 +1057,10 @@ footer {
     }
     .why-us-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+    .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
     }
 }
 
@@ -895,5 +1076,9 @@ footer {
     }
     .nav-links {
         display: none; /* simple burger menu or hide for simplicity */
+    }
+    .video-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
 }
