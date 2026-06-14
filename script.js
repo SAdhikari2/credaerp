@@ -162,9 +162,9 @@ document.addEventListener('DOMContentLoaded', () => {
                          <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.5;">Thank you! We will reach out to you on WhatsApp within 2 hours with your trial license key. You can download the client installer now:</p>
                          
                          <div style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.75rem; text-align: left;">
-                             <a href="https://github.com/SAdhikari2/ArogyaPOS/releases/latest/download/TillioPOS-Windows.exe" class="cta-btn cta-btn-primary" style="text-align: center; padding: 0.75rem 1rem; font-size: 0.9rem;">🖥️ Download for Windows (.exe)</a>
-                             <a href="https://github.com/SAdhikari2/ArogyaPOS/releases/latest/download/TillioPOS-macOS-AppleSilicon.dmg" class="cta-btn cta-btn-secondary" style="text-align: center; padding: 0.75rem 1rem; font-size: 0.9rem;">🍏 Download for macOS (Apple Silicon M1/M2/M3)</a>
-                             <a href="https://github.com/SAdhikari2/ArogyaPOS/releases/latest/download/TillioPOS-macOS-Intel.dmg" class="cta-btn cta-btn-secondary" style="text-align: center; padding: 0.75rem 1rem; font-size: 0.9rem;">💻 Download for macOS (Intel Chip)</a>
+                             <a href="https://github.com/SAdhikari2/ArogyaPOS/releases/latest/download/CredaERP-Windows.exe" class="cta-btn cta-btn-primary" style="text-align: center; padding: 0.75rem 1rem; font-size: 0.9rem;">🖥️ Download for Windows (.exe)</a>
+                             <a href="https://github.com/SAdhikari2/ArogyaPOS/releases/latest/download/CredaERP-macOS-AppleSilicon.dmg" class="cta-btn cta-btn-secondary" style="text-align: center; padding: 0.75rem 1rem; font-size: 0.9rem;">🍏 Download for macOS (Apple Silicon M1/M2/M3)</a>
+                             <a href="https://github.com/SAdhikari2/ArogyaPOS/releases/latest/download/CredaERP-macOS-Intel.dmg" class="cta-btn cta-btn-secondary" style="text-align: center; padding: 0.75rem 1rem; font-size: 0.9rem;">💻 Download for macOS (Intel Chip)</a>
                          </div>
                          
                          <button class="form-submit-btn close-success-btn" style="max-width: 200px; margin: 0 auto;">Close</button>
