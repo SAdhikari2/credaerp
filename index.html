@@ -214,42 +214,200 @@
             </div>
         </section>
 
-        <!-- Pricing / Early Adopter Offer -->
+        <!-- Pricing / Licensing Section -->
         <section class="pricing-section" id="pricing">
-            <h2 class="section-title">Early Adopter Offer</h2>
-            <div class="pricing-container">
-                <div class="offer-card">
-                    <div class="offer-header">
-                        <span class="offer-badge">Limited Time Offer</span>
-                        <h3>First 3 Months FREE</h3>
-                        <p>Evaluate CredaERP in your real business environment. No setup fee. No commitment.</p>
+            <h2 class="section-title">Flexible Plans for Businesses of All Sizes</h2>
+            
+            <!-- Controls Section -->
+            <section class="controls-container">
+                <!-- Billing Toggle -->
+                <div class="toggle-label">
+                    <span style="font-weight: 600; font-size: 0.95rem; color: var(--text-secondary);">Billing Cycle:</span>
+                    <div class="toggle-group billing-toggle" id="billing-toggle">
+                        <div class="slider-indicator"></div>
+                        <button class="toggle-btn active" data-period="quarterly">Quarterly</button>
+                        <button class="toggle-btn" data-period="yearly">Yearly</button>
+                    </div>
+                    <span class="save-badge">Save up to 25%</span>
+                </div>
+
+                <!-- Currency Toggle -->
+                <div class="toggle-label">
+                    <span style="font-weight: 600; font-size: 0.95rem; color: var(--text-secondary);">Currency:</span>
+                    <div class="toggle-group currency-toggle" id="currency-toggle">
+                        <div class="slider-indicator"></div>
+                        <button class="toggle-btn active" data-currency="inr">INR (₹)</button>
+                        <button class="toggle-btn" data-currency="usd">USD ($)</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pricing Grid -->
+            <div class="pricing-grid">
+                <!-- Starter Card -->
+                <div class="pricing-card" id="card-starter">
+                    <div class="card-header">
+                        <h2>Starter</h2>
+                        <p>Essential billing & POS terminal for small independent stores.</p>
                     </div>
                     
-                    <div class="offer-divider"></div>
+                    <div class="card-pricing">
+                        <span class="original-price" id="starter-original"></span>
+                        <div class="price-value-container">
+                            <span class="price-currency" id="starter-currency">₹</span>
+                            <span class="price-amount" id="starter-amount">699</span>
+                            <span class="price-period" id="starter-period">/ quarter</span>
+                        </div>
+                        <div class="price-trial-info" id="starter-trial-info">✨ 3 months free trial, then billed quarterly</div>
+                    </div>
+
+                    <a href="#" class="cta-btn cta-btn-secondary open-modal-btn" data-plan="Starter">Start 3-Month Trial</a>
+
+                    <ul class="features-list">
+                        <li>
+                            <svg class="feature-icon check" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Core POS Billing Terminal</span>
+                        </li>
+                        <li>
+                            <svg class="feature-icon check" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Batch & Expiry Date Tracking</span>
+                        </li>
+                        <li>
+                            <svg class="feature-icon check" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            <span>GST Billing (CGST, SGST, IGST)</span>
+                        </li>
+                        <li>
+                            <svg class="feature-icon check" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Customer & Vendor Registers</span>
+                        </li>
+                        <li>
+                            <svg class="feature-icon check" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Support & Diagnostics Utility</span>
+                        </li>
+                        <li class="unsupported">
+                            <svg class="feature-icon cross" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            <span>Advanced Analytics & Reports</span>
+                        </li>
+                        <li class="unsupported">
+                            <svg class="feature-icon cross" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            <span>Advance Orders & Day Closure</span>
+                        </li>
+                        <li class="unsupported">
+                            <svg class="feature-icon cross" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            <span>Stock Forecasting & AI Insights</span>
+                        </li>
+                        <li class="unsupported">
+                            <svg class="feature-icon cross" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            <span>Automated E-Invoicing (IRN)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Growth Card -->
+                <div class="pricing-card" id="card-growth">
+                    <div class="card-header">
+                        <h2>Growth</h2>
+                        <p>Advanced reports & analytics for businesses expanding their operations.</p>
+                    </div>
                     
-                    <div class="offer-details">
-                        <p class="trial-price">₹0 <span>for the first 90 days</span></p>
-                        <p class="post-trial">After trial: Affordable yearly plans tailored for your business size.</p>
+                    <div class="card-pricing">
+                        <span class="original-price" id="growth-original"></span>
+                        <div class="price-value-container">
+                            <span class="price-currency" id="growth-currency">₹</span>
+                            <span class="price-amount" id="growth-amount">1,399</span>
+                            <span class="price-period" id="growth-period">/ quarter</span>
+                        </div>
+                        <div class="price-trial-info" id="growth-trial-info">✨ 3 months free trial, then billed quarterly</div>
                     </div>
 
-                    <div class="contact-channels">
-                        <a href="https://wa.me/918967859971" class="channel-btn whatsapp-channel" target="_blank">
-                            <span class="channel-icon">💬</span>
-                            <div>
-                                <span class="channel-label">Message on WhatsApp</span>
-                                <span class="channel-val">8967859971</span>
-                            </div>
-                        </a>
-                        <a href="mailto:credaerp@gmail.com" class="channel-btn email-channel">
-                            <span class="channel-icon">📧</span>
-                            <div>
-                                <span class="channel-label">Email us at</span>
-                                <span class="channel-val">credaerp@gmail.com</span>
-                            </div>
-                        </a>
+                    <a href="#" class="cta-btn cta-btn-secondary open-modal-btn" data-plan="Growth">Start 3-Month Trial</a>
+
+                    <ul class="features-list">
+                        <li>
+                            <svg class="feature-icon check" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            <span><strong>All Starter features</strong></span>
+                        </li>
+                        <li>
+                            <svg class="feature-icon check" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Advanced Reports & Dashboards</span>
+                        </li>
+                        <li>
+                            <svg class="feature-icon check" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            <span>GST Returns (GSTR-1 & 3B) Preparation</span>
+                        </li>
+                        <li>
+                            <svg class="feature-icon check" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Inventory Valuation & Flow Analysis</span>
+                        </li>
+                        <li>
+                            <svg class="feature-icon check" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Multi-user Access Control</span>
+                        </li>
+                        <li class="unsupported">
+                            <svg class="feature-icon cross" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            <span>Advance Orders & Day Closure</span>
+                        </li>
+                        <li class="unsupported">
+                            <svg class="feature-icon cross" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            <span>Stock Forecasting & AI Insights</span>
+                        </li>
+                        <li class="unsupported">
+                            <svg class="feature-icon cross" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path></svg>
+                            <span>Automated E-Invoicing (IRN)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Premium Card -->
+                <div class="pricing-card popular" id="card-premium">
+                    <span class="card-badge">Best Deal</span>
+                    <div class="card-header">
+                        <h2>Premium</h2>
+                        <p>Complete enterprise toolkit for high-volume and multi-terminal operations.</p>
+                    </div>
+                    
+                    <div class="card-pricing">
+                        <span class="original-price" id="premium-original"></span>
+                        <div class="price-value-container">
+                            <span class="price-currency" id="premium-currency">₹</span>
+                            <span class="price-amount" id="premium-amount">1,699</span>
+                            <span class="price-period" id="premium-period">/ quarter</span>
+                        </div>
+                        <div class="price-trial-info" id="premium-trial-info">✨ 3 months free trial, then billed quarterly</div>
                     </div>
 
-                    <a href="#" class="cta-btn cta-btn-primary open-modal-btn" data-plan="Early Adopter Trial" style="margin-bottom: 0;">Request Free Demo Key</a>
+                    <a href="#" class="cta-btn cta-btn-primary open-modal-btn" data-plan="Premium">Start 3-Month Trial</a>
+
+                    <ul class="features-list">
+                        <li>
+                            <svg class="feature-icon check" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            <span><strong>All Growth features</strong></span>
+                        </li>
+                        <li>
+                            <svg class="feature-icon check" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Advance Orders & Customer Deposits</span>
+                        </li>
+                        <li>
+                            <svg class="feature-icon check" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Day Closure Register Reconciliation</span>
+                        </li>
+                        <li>
+                            <svg class="feature-icon check" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Clinical Analytics & Prescribing Insights</span>
+                        </li>
+                        <li>
+                            <svg class="feature-icon check" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            <span>AI Stock Forecasting & Autofill</span>
+                        </li>
+                        <li>
+                            <svg class="feature-icon check" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            <span>Automated E-Invoicing (IRN & QR code)</span>
+                        </li>
+                        <li>
+                            <svg class="feature-icon check" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                            <span>24/7 Dedicated Priority Support</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </section>

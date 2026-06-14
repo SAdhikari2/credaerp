@@ -170,4 +170,160 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1500);
         });
     }
+
+    // ── Pricing Toggle Logic ─────────────────────────────────────────────
+    const PRICES = {
+        // [period][currency] = { starter, growth, premium }
+        // Yearly: ₹1,999 / ₹3,999 / ₹4,999  (as set by owner)
+        // Quarterly: ~33% premium over per-quarter yearly rate
+        quarterly: {
+            inr: { starter: 699,  growth: 1399, premium: 1699 },
+            usd: { starter: 9,    growth: 17,   premium: 21  }
+        },
+        yearly: {
+            inr: { starter: 1999, growth: 3999, premium: 4999 },
+            usd: { starter: 24,   growth: 48,   premium: 60  }
+        }
+    };
+
+    // Originals shown as strikethroughs on yearly tab
+    // (what you'd spend if billed quarterly for 4 quarters)
+    const ORIGINALS = {
+        quarterly: {
+            inr: { starter: 699,  growth: 1399, premium: 1699 },
+            usd: { starter: 9,    growth: 17,   premium: 21  }
+        },
+        yearly: {
+            inr: { starter: 2796, growth: 5596, premium: 6796 },
+            usd: { starter: 36,   growth: 68,   premium: 84  }
+        }
+    };
+
+    const CURRENCY_SYMBOLS = { inr: '₹', usd: '$' };
+    const PERIOD_LABELS    = { quarterly: '/ quarter', yearly: '/ year' };
+    const PLANS = ['starter', 'growth', 'premium'];
+
+    let activePeriod   = 'quarterly';
+    let activeCurrency = 'inr';
+
+    function formatNumber(n, currency) {
+        if (currency === 'inr') {
+            return n.toLocaleString('en-IN');
+        }
+        return n.toString();
+    }
+
+    function updatePrices() {
+        const prices   = PRICES[activePeriod][activeCurrency];
+        const originals = ORIGINALS[activePeriod][activeCurrency];
+        const symbol   = CURRENCY_SYMBOLS[activeCurrency];
+        const period   = PERIOD_LABELS[activePeriod];
+        const isYearly = activePeriod === 'yearly';
+
+        PLANS.forEach(plan => {
+            const amountEl   = document.getElementById(`${plan}-amount`);
+            const currencyEl = document.getElementById(`${plan}-currency`);
+            const periodEl   = document.getElementById(`${plan}-period`);
+            const originalEl = document.getElementById(`${plan}-original`);
+            const trialEl    = document.getElementById(`${plan}-trial-info`);
+
+            if (!amountEl) return;
+
+            // Animate price flip
+            amountEl.style.transform = 'translateY(-8px)';
+            amountEl.style.opacity   = '0';
+            setTimeout(() => {
+                amountEl.textContent     = formatNumber(prices[plan], activeCurrency);
+                currencyEl.textContent   = symbol;
+                periodEl.textContent     = period;
+
+                if (isYearly) {
+                    originalEl.textContent = `${symbol}${formatNumber(originals[plan], activeCurrency)} / quarter`;
+                    originalEl.style.visibility = 'visible';
+                    trialEl.textContent = '🎉 Annual plan — save ~25%!';
+                } else {
+                    originalEl.textContent = '';
+                    originalEl.style.visibility = 'hidden';
+                    trialEl.textContent = '✨ 3 months free trial, then billed quarterly';
+                }
+
+                amountEl.style.transform = 'translateY(0)';
+                amountEl.style.opacity   = '1';
+            }, 180);
+        });
+    }
+
+    // Billing Cycle Toggle
+    const billingToggle = document.getElementById('billing-toggle');
+    if (billingToggle) {
+        billingToggle.querySelectorAll('.toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                billingToggle.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activePeriod = btn.dataset.period;
+                if (activePeriod === 'yearly') {
+                    billingToggle.classList.add('annually');
+                } else {
+                    billingToggle.classList.remove('annually');
+                }
+                updatePrices();
+            });
+        });
+    }
+
+    // Currency Toggle
+    const currencyToggle = document.getElementById('currency-toggle');
+    if (currencyToggle) {
+        currencyToggle.querySelectorAll('.toggle-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                currencyToggle.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeCurrency = btn.dataset.currency;
+                if (activeCurrency === 'usd') {
+                    currencyToggle.classList.add('usd');
+                } else {
+                    currencyToggle.classList.remove('usd');
+                }
+                updatePrices();
+            });
+        });
+    }
+
+    // Initialize prices on load
+    updatePrices();
+
+    // ── YouTube Video Modal ──────────────────────────────────────────────
+    const videoModal    = document.getElementById('video-modal');
+    const youtubePlayer = document.getElementById('youtube-player');
+    const videoCards    = document.querySelectorAll('.video-card');
+    const videoClose    = document.getElementById('video-modal-close');
+
+    if (videoModal && youtubePlayer) {
+        videoCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const videoId = card.dataset.videoId;
+                if (!videoId) return;
+                youtubePlayer.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                videoModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        const closeVideo = () => {
+            videoModal.classList.remove('active');
+            youtubePlayer.src = '';
+            document.body.style.overflow = '';
+        };
+
+        if (videoClose) videoClose.addEventListener('click', closeVideo);
+
+        videoModal.addEventListener('click', e => {
+            if (e.target === videoModal) closeVideo();
+        });
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && videoModal.classList.contains('active')) closeVideo();
+        });
+    }
 });
+
