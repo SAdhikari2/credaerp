@@ -110,8 +110,8 @@ body::after {
 }
 
 .logo-img {
-    height: 36px;
-    width: 36px;
+    height: 48px;
+    width: 48px;
     border-radius: 8px;
     object-fit: cover;
 }

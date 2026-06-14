@@ -219,7 +219,7 @@
             <h2 class="section-title">Flexible Plans for Businesses of All Sizes</h2>
             
             <!-- Controls Section -->
-            <section class="controls-container">
+            <div class="controls-container">
                 <!-- Billing Toggle -->
                 <div class="toggle-label">
                     <span style="font-weight: 600; font-size: 0.95rem; color: var(--text-secondary);">Billing Cycle:</span>
@@ -228,19 +228,9 @@
                         <button class="toggle-btn active" data-period="quarterly">Quarterly</button>
                         <button class="toggle-btn" data-period="yearly">Yearly</button>
                     </div>
-                    <span class="save-badge">Save up to 25%</span>
+                    <span class="save-badge">Save ~29% yearly</span>
                 </div>
-
-                <!-- Currency Toggle -->
-                <div class="toggle-label">
-                    <span style="font-weight: 600; font-size: 0.95rem; color: var(--text-secondary);">Currency:</span>
-                    <div class="toggle-group currency-toggle" id="currency-toggle">
-                        <div class="slider-indicator"></div>
-                        <button class="toggle-btn active" data-currency="inr">INR (₹)</button>
-                        <button class="toggle-btn" data-currency="usd">USD ($)</button>
-                    </div>
-                </div>
-            </section>
+            </div>
 
             <!-- Pricing Grid -->
             <div class="pricing-grid">
@@ -261,7 +251,7 @@
                         <div class="price-trial-info" id="starter-trial-info">✨ 3 months free trial, then billed quarterly</div>
                     </div>
 
-                    <a href="#" class="cta-btn cta-btn-secondary open-modal-btn" data-plan="Starter">Start 3-Month Trial</a>
+                    <a href="#" class="cta-btn cta-btn-secondary open-modal-btn" data-plan="Starter">Request Free Demo Key</a>
 
                     <ul class="features-list">
                         <li>
@@ -320,7 +310,7 @@
                         <div class="price-trial-info" id="growth-trial-info">✨ 3 months free trial, then billed quarterly</div>
                     </div>
 
-                    <a href="#" class="cta-btn cta-btn-secondary open-modal-btn" data-plan="Growth">Start 3-Month Trial</a>
+                    <a href="#" class="cta-btn cta-btn-secondary open-modal-btn" data-plan="Growth">Request Free Demo Key</a>
 
                     <ul class="features-list">
                         <li>
@@ -376,7 +366,7 @@
                         <div class="price-trial-info" id="premium-trial-info">✨ 3 months free trial, then billed quarterly</div>
                     </div>
 
-                    <a href="#" class="cta-btn cta-btn-primary open-modal-btn" data-plan="Premium">Start 3-Month Trial</a>
+                    <a href="#" class="cta-btn cta-btn-primary open-modal-btn" data-plan="Premium">Request Free Demo Key</a>
 
                     <ul class="features-list">
                         <li>
@@ -482,22 +472,24 @@
                 <h3 id="modal-plan-title">Request Free Demo Key</h3>
                 <p>No commitment. First 3 months is completely free.</p>
             </div>
-            <form id="demo-form">
+            <form id="demo-form" name="demo-request" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="demo-request">
+                <p class="hidden" style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
                 <div class="form-group">
                     <label for="pharmacy-name">Business / Store Name</label>
-                    <input type="text" id="pharmacy-name" class="form-control" placeholder="e.g. Creda Pharmacy" required>
+                    <input type="text" id="pharmacy-name" name="business-name" class="form-control" placeholder="e.g. Creda Pharmacy" required>
                 </div>
                 <div class="form-group">
                     <label for="owner-email">Email Address</label>
-                    <input type="email" id="owner-email" class="form-control" placeholder="e.g. owner@gmail.com" required>
+                    <input type="email" id="owner-email" name="email" class="form-control" placeholder="e.g. owner@gmail.com" required>
                 </div>
                 <div class="form-group">
                     <label for="owner-phone">Mobile / WhatsApp Number</label>
-                    <input type="tel" id="owner-phone" class="form-control" placeholder="e.g. +91 89678 59971" required>
+                    <input type="tel" id="owner-phone" name="whatsapp-number" class="form-control" placeholder="e.g. +91 98765 43210" required>
                 </div>
                 <div class="form-group">
                     <label for="gstin">GSTIN (Optional)</label>
-                    <input type="text" id="gstin" class="form-control" placeholder="e.g. 27AAAAA1111A1Z1">
+                    <input type="text" id="gstin" name="gstin" class="form-control" placeholder="e.g. 27AAAAA1111A1Z1">
                 </div>
                 <button type="submit" class="form-submit-btn">Claim 3-Months Free Trial</button>
             </form>

@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Form submission simulation
+    // Form submission handler (Netlify Forms via AJAX)
     if (demoForm) {
         demoForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -145,7 +145,14 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.textContent = 'Registering Demo Request...';
             submitBtn.disabled = true;
             
-            setTimeout(() => {
+            // Post form data to Netlify via AJAX
+            const formData = new FormData(demoForm);
+            fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(formData).toString()
+            })
+            .then(() => {
                 const modalContent = modal.querySelector('.modal-content');
                 modalContent.innerHTML = `
                     <button class="modal-close" style="position: absolute; top: 1.25rem; right: 1.25rem; background: transparent; border: none; cursor: pointer; color: var(--text-muted); font-size: 1.5rem;">&times;</button>
@@ -166,63 +173,39 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 modalContent.querySelector('.modal-close').addEventListener('click', successCloseHandler);
                 modalContent.querySelector('.close-success-btn').addEventListener('click', successCloseHandler);
-                
-            }, 1500);
+            })
+            .catch((error) => {
+                console.error('Netlify Form submission error:', error);
+                submitBtn.textContent = 'Claim 3-Months Free Trial';
+                submitBtn.disabled = false;
+                alert('Something went wrong. Please try again or contact support.');
+            });
         });
     }
 
-    // ── Pricing Toggle Logic ─────────────────────────────────────────────
+    // ── Pricing Toggle Logic (INR only — for Indian businesses) ──────────
     const PRICES = {
-        // [period][currency] = { starter, growth, premium }
-        // Yearly: ₹1,999 / ₹3,999 / ₹4,999  (as set by owner)
-        // Quarterly: ~33% premium over per-quarter yearly rate
-        quarterly: {
-            inr: { starter: 699,  growth: 1399, premium: 1699 },
-            usd: { starter: 9,    growth: 17,   premium: 21  }
-        },
-        yearly: {
-            inr: { starter: 1999, growth: 3999, premium: 4999 },
-            usd: { starter: 24,   growth: 48,   premium: 60  }
-        }
+        // Yearly: ₹1,999 / ₹3,999 / ₹4,999  (set by owner)
+        // Quarterly: ~29% higher per year than annual plan
+        quarterly: { starter: 699,  growth: 1399, premium: 1699 },
+        yearly:    { starter: 1999, growth: 3999, premium: 4999 }
     };
 
-    // Originals shown as strikethroughs on yearly tab
-    // (what you'd spend if billed quarterly for 4 quarters)
-    const ORIGINALS = {
-        quarterly: {
-            inr: { starter: 699,  growth: 1399, premium: 1699 },
-            usd: { starter: 9,    growth: 17,   premium: 21  }
-        },
-        yearly: {
-            inr: { starter: 2796, growth: 5596, premium: 6796 },
-            usd: { starter: 36,   growth: 68,   premium: 84  }
-        }
-    };
+    // Strikethrough shown on yearly tab = what 4 quarters would cost
+    const ORIGINALS_YEARLY = { starter: 2796, growth: 5596, premium: 6796 };
 
-    const CURRENCY_SYMBOLS = { inr: '₹', usd: '$' };
-    const PERIOD_LABELS    = { quarterly: '/ quarter', yearly: '/ year' };
+    const PERIOD_LABELS = { quarterly: '/ quarter', yearly: '/ year' };
     const PLANS = ['starter', 'growth', 'premium'];
 
-    let activePeriod   = 'quarterly';
-    let activeCurrency = 'inr';
-
-    function formatNumber(n, currency) {
-        if (currency === 'inr') {
-            return n.toLocaleString('en-IN');
-        }
-        return n.toString();
-    }
+    let activePeriod = 'quarterly';
 
     function updatePrices() {
-        const prices   = PRICES[activePeriod][activeCurrency];
-        const originals = ORIGINALS[activePeriod][activeCurrency];
-        const symbol   = CURRENCY_SYMBOLS[activeCurrency];
+        const prices   = PRICES[activePeriod];
         const period   = PERIOD_LABELS[activePeriod];
         const isYearly = activePeriod === 'yearly';
 
         PLANS.forEach(plan => {
             const amountEl   = document.getElementById(`${plan}-amount`);
-            const currencyEl = document.getElementById(`${plan}-currency`);
             const periodEl   = document.getElementById(`${plan}-period`);
             const originalEl = document.getElementById(`${plan}-original`);
             const trialEl    = document.getElementById(`${plan}-trial-info`);
@@ -233,18 +216,17 @@ document.addEventListener('DOMContentLoaded', () => {
             amountEl.style.transform = 'translateY(-8px)';
             amountEl.style.opacity   = '0';
             setTimeout(() => {
-                amountEl.textContent     = formatNumber(prices[plan], activeCurrency);
-                currencyEl.textContent   = symbol;
-                periodEl.textContent     = period;
+                amountEl.textContent = prices[plan].toLocaleString('en-IN');
+                periodEl.textContent = period;
 
                 if (isYearly) {
-                    originalEl.textContent = `${symbol}${formatNumber(originals[plan], activeCurrency)} / quarter`;
+                    originalEl.textContent      = `₹${ORIGINALS_YEARLY[plan].toLocaleString('en-IN')} if billed quarterly`;
                     originalEl.style.visibility = 'visible';
-                    trialEl.textContent = '🎉 Annual plan — save ~25%!';
+                    trialEl.textContent         = '🎉 Annual plan — save ~29%!';
                 } else {
-                    originalEl.textContent = '';
+                    originalEl.textContent      = '';
                     originalEl.style.visibility = 'hidden';
-                    trialEl.textContent = '✨ 3 months free trial, then billed quarterly';
+                    trialEl.textContent         = '✨ 3 months free trial, then billed quarterly';
                 }
 
                 amountEl.style.transform = 'translateY(0)';
@@ -261,29 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 billingToggle.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 activePeriod = btn.dataset.period;
-                if (activePeriod === 'yearly') {
-                    billingToggle.classList.add('annually');
-                } else {
-                    billingToggle.classList.remove('annually');
-                }
-                updatePrices();
-            });
-        });
-    }
-
-    // Currency Toggle
-    const currencyToggle = document.getElementById('currency-toggle');
-    if (currencyToggle) {
-        currencyToggle.querySelectorAll('.toggle-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                currencyToggle.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                activeCurrency = btn.dataset.currency;
-                if (activeCurrency === 'usd') {
-                    currencyToggle.classList.add('usd');
-                } else {
-                    currencyToggle.classList.remove('usd');
-                }
+                billingToggle.classList.toggle('annually', activePeriod === 'yearly');
                 updatePrices();
             });
         });
