@@ -6,7 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
         { file: 'inventory.png', alt: 'CredaERP Smart Inventory Management' },
         { file: 'billing-items.png', alt: 'CredaERP POS Terminal Billing Grid' },
         { file: 'billing-checkout.png', alt: 'CredaERP POS Terminal Checkout & Payment' },
-        { file: 'reports.png', alt: 'CredaERP Business Reports & GST Compliance' }
+        { file: 'reports.png', alt: 'CredaERP Business Reports & GST Compliance' },
+        { file: 'gst-filing.png', alt: 'CredaERP GST Filing Dashboard' },
+        { file: 'ca-dashboard.png', alt: 'CredaERP CA Dashboard & Reports' }
     ];
 
     // DOM Elements for Screenshots tab switcher
