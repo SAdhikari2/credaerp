@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const PERIOD_LABELS = { quarterly: '/ quarter', yearly: '/ year' };
     const PLANS = ['starter', 'growth', 'premium'];
 
-    let activePeriod = 'quarterly';
+    let activePeriod = 'yearly';
 
     function updatePrices() {
         const prices   = PRICES[activePeriod];
