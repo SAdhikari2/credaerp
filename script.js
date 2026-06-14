@@ -170,47 +170,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1500);
         });
     }
-
-    // Video Player Modal Interaction
-    const videoModal = document.getElementById('video-modal');
-    const youtubePlayer = document.getElementById('youtube-player');
-    const videoCards = document.querySelectorAll('.video-card');
-    const videoCloseBtn = document.querySelector('.video-modal-close');
-
-    if (videoCards.length > 0 && videoModal && youtubePlayer) {
-        videoCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const videoId = card.dataset.youtubeId;
-                if (videoId) {
-                    // Set src of iframe with autoplay and rel=0
-                    youtubePlayer.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-                    videoModal.classList.add('active');
-                }
-            });
-        });
-
-        const closeVideoModal = () => {
-            videoModal.classList.remove('active');
-            // Reset the iframe src to stop the video/audio
-            youtubePlayer.src = '';
-        };
-
-        if (videoCloseBtn) {
-            videoCloseBtn.addEventListener('click', closeVideoModal);
-        }
-
-        // Close on clicking overlay (outside modal content)
-        videoModal.addEventListener('click', (e) => {
-            if (e.target === videoModal) {
-                closeVideoModal();
-            }
-        });
-
-        // Close on pressing Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && videoModal.classList.contains('active')) {
-                closeVideoModal();
-            }
-        });
-    }
 });

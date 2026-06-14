@@ -12,9 +12,10 @@
     <!-- Header Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">
+            <a href="#" class="logo">
+                <img src="images/logo.jpg" alt="CredaERP Logo" class="logo-img">
                 Creda<span>ERP</span>
-            </div>
+            </a>
             <div class="nav-links">
                 <a href="#features">Features</a>
                 <a href="#screenshots">Screenshots</a>
@@ -152,63 +153,30 @@
         <!-- Watch Demo Videos -->
         <section class="videos-section" id="demo-videos">
             <h2 class="section-title">See CredaERP in Action</h2>
-            <p class="section-subtitle">Watch quick video guides showing our key features and POS billing workflow.</p>
+            <p class="section-subtitle">Watch our step-by-step video guides. Whenever we upload new tutorials to YouTube, they will automatically appear here!</p>
             
-            <div class="video-grid">
-                <!-- Video Card 1 -->
-                <div class="video-card" data-youtube-id="dQw4w9WgXcQ">
-                    <div class="video-thumbnail-wrapper">
-                        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="CredaERP Full Walkthrough & Billing Demo" class="video-thumbnail">
-                        <div class="video-play-overlay">
-                            <span class="video-play-btn">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </span>
+            <div class="playlist-container">
+                <!-- macOS Style Browser Mockup -->
+                <div class="browser-mockup playlist-player-frame">
+                    <div class="browser-header">
+                        <div class="browser-buttons">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
                         </div>
-                        <span class="video-duration">5:20</span>
+                        <div class="browser-address">youtube.com/playlist?list=PLQX1-pvlDM7k3MLuj2KsBlpw-VkbdpIFu</div>
                     </div>
-                    <div class="video-info">
-                        <h3>Full Software Walkthrough</h3>
-                        <p>See how to set up your account, configure settings, and navigate the dashboard in under 5 minutes.</p>
-                    </div>
-                </div>
-
-                <!-- Video Card 2 -->
-                <div class="video-card" data-youtube-id="dQw4w9WgXcQ">
-                    <div class="video-thumbnail-wrapper">
-                        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="High-Speed Billing & POS Terminal" class="video-thumbnail">
-                        <div class="video-play-overlay">
-                            <span class="video-play-btn">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </span>
+                    <div class="browser-content">
+                        <div class="video-ratio-wrapper">
+                            <iframe 
+                                id="playlist-iframe"
+                                src="https://www.youtube.com/embed/videoseries?list=PLQX1-pvlDM7k3MLuj2KsBlpw-VkbdpIFu" 
+                                title="CredaERP Demo Videos Playlist"
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                allowfullscreen>
+                            </iframe>
                         </div>
-                        <span class="video-duration">3:45</span>
-                    </div>
-                    <div class="video-info">
-                        <h3>High-Speed Billing & POS</h3>
-                        <p>Learn how to use keyboard shortcuts, scan items, process payments, and print GST receipts quickly.</p>
-                    </div>
-                </div>
-
-                <!-- Video Card 3 -->
-                <div class="video-card" data-youtube-id="dQw4w9WgXcQ">
-                    <div class="video-thumbnail-wrapper">
-                        <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Smart Inventory & Expiry Tracking" class="video-thumbnail">
-                        <div class="video-play-overlay">
-                            <span class="video-play-btn">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </span>
-                        </div>
-                        <span class="video-duration">4:12</span>
-                    </div>
-                    <div class="video-info">
-                        <h3>Inventory & Expiry Control</h3>
-                        <p>Manage batches, track expiry dates, receive low-stock alerts, and automate re-ordering seamlessly.</p>
                     </div>
                 </div>
             </div>
@@ -375,16 +343,6 @@
                 </div>
                 <button type="submit" class="form-submit-btn">Claim 3-Months Free Trial</button>
             </form>
-        </div>
-    </div>
-
-    <!-- Video Player Modal -->
-    <div class="modal-overlay" id="video-modal">
-        <div class="video-modal-content">
-            <button class="modal-close video-modal-close" style="position: absolute; top: -2.5rem; right: 0; background: transparent; border: none; cursor: pointer; color: #fff; font-size: 2rem;">&times;</button>
-            <div class="video-player-container">
-                <iframe id="youtube-player" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
         </div>
     </div>
 
