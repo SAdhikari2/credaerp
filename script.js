@@ -292,5 +292,127 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'Escape' && videoModal.classList.contains('active')) closeVideo();
         });
     }
+
+    // ── Reviews Carousel ─────────────────────────────────────────────────
+    const track     = document.getElementById('reviews-track');
+    const prevBtn   = document.getElementById('reviews-prev');
+    const nextBtn   = document.getElementById('reviews-next');
+    const dotsWrap  = document.getElementById('reviews-dots');
+
+    if (track && prevBtn && nextBtn && dotsWrap) {
+        const cards = Array.from(track.querySelectorAll('.review-card'));
+        let currentIndex = 0;
+        let autoTimer    = null;
+
+        // How many cards are visible at this viewport width
+        function getPerView() {
+            if (window.innerWidth <= 768)  return 1;
+            if (window.innerWidth <= 1024) return 2;
+            return 3;
+        }
+
+        // Total number of "pages" (steps)
+        function totalSteps() {
+            return Math.max(1, cards.length - getPerView() + 1);
+        }
+
+        // Build dot buttons
+        function buildDots() {
+            dotsWrap.innerHTML = '';
+            const n = totalSteps();
+            for (let i = 0; i < n; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'carousel-dot' + (i === currentIndex ? ' active' : '');
+                dot.setAttribute('aria-label', `Go to review ${i + 1}`);
+                dot.addEventListener('click', () => goTo(i));
+                dotsWrap.appendChild(dot);
+            }
+        }
+
+        // Sync active dot highlight
+        function syncDots() {
+            dotsWrap.querySelectorAll('.carousel-dot').forEach((d, i) => {
+                d.classList.toggle('active', i === currentIndex);
+            });
+        }
+
+        // Calculate pixel offset and slide the track
+        function applyTransform() {
+            // Card width + gap (gap is 1.5 rem = 24 px)
+            const cardWidth = cards[0].getBoundingClientRect().width;
+            const gap       = 24; // matches CSS 1.5rem gap
+            const offset    = currentIndex * (cardWidth + gap);
+            track.style.transform = `translateX(-${offset}px)`;
+        }
+
+        // Go to a specific step
+        function goTo(index) {
+            const steps = totalSteps();
+            currentIndex = Math.max(0, Math.min(index, steps - 1));
+            applyTransform();
+            syncDots();
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex >= steps - 1;
+        }
+
+        // Auto-advance
+        function startAuto() {
+            stopAuto();
+            autoTimer = setInterval(() => {
+                const next = currentIndex + 1 >= totalSteps() ? 0 : currentIndex + 1;
+                goTo(next);
+            }, 5000);
+        }
+
+        function stopAuto() {
+            if (autoTimer) clearInterval(autoTimer);
+        }
+
+        // Prev / Next buttons
+        prevBtn.addEventListener('click', () => { goTo(currentIndex - 1); stopAuto(); startAuto(); });
+        nextBtn.addEventListener('click', () => { goTo(currentIndex + 1); stopAuto(); startAuto(); });
+
+        // Keyboard arrow navigation when focus is within the section
+        document.addEventListener('keydown', e => {
+            if (!document.getElementById('reviews').contains(document.activeElement)) return;
+            if (e.key === 'ArrowLeft')  { goTo(currentIndex - 1); stopAuto(); startAuto(); }
+            if (e.key === 'ArrowRight') { goTo(currentIndex + 1); stopAuto(); startAuto(); }
+        });
+
+        // Touch / swipe support
+        let touchStartX = 0;
+        track.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+        track.addEventListener('touchend',   e => {
+            const delta = touchStartX - e.changedTouches[0].clientX;
+            if (Math.abs(delta) > 50) {
+                delta > 0 ? goTo(currentIndex + 1) : goTo(currentIndex - 1);
+                stopAuto(); startAuto();
+            }
+        });
+
+        // Recalculate on resize (debounced)
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                // Clamp index to new step count
+                currentIndex = Math.min(currentIndex, totalSteps() - 1);
+                buildDots();
+                applyTransform();
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex >= totalSteps() - 1;
+            }, 120);
+        });
+
+        // Pause auto on hover
+        const section = document.getElementById('reviews');
+        section.addEventListener('mouseenter', stopAuto);
+        section.addEventListener('mouseleave', startAuto);
+
+        // Init
+        buildDots();
+        goTo(0);
+        startAuto();
+    }
 });
 

@@ -1192,15 +1192,34 @@ footer {
     border-top: 1px solid var(--border-color);
 }
 
-.reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+/* Carousel wrapper: positions prev/next buttons on the sides */
+.reviews-carousel-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
     max-width: 1200px;
     margin: 3rem auto 0 auto;
 }
 
-.review-card {
+/* Viewport: clips the overflowing track */
+.reviews-carousel-viewport {
+    flex: 1;
+    overflow: hidden;
+    border-radius: 24px;
+}
+
+/* Track: a flex row of all cards side-by-side */
+.reviews-carousel-track {
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+}
+
+/* Each card takes exactly 1/3 of the viewport (3-up on desktop) */
+.reviews-carousel-track .review-card {
+    flex: 0 0 calc(33.333% - 1rem);  /* 3 cards visible */
+    min-width: 0;
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 20px;
@@ -1208,28 +1227,88 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: var(--transition-smooth);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     backdrop-filter: blur(16px);
     position: relative;
     overflow: hidden;
 }
 
-.review-card::before {
-    content: '"';
+.reviews-carousel-track .review-card::before {
+    content: '\201C';
     position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 8rem;
-    color: rgba(255, 255, 255, 0.03);
-    font-family: serif;
+    top: 8px;
+    right: 18px;
+    font-size: 7rem;
+    color: rgba(255, 255, 255, 0.035);
+    font-family: Georgia, serif;
     line-height: 1;
     pointer-events: none;
 }
 
-.review-card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(37, 99, 235, 0.35);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35), 0 0 30px rgba(37, 99, 235, 0.04);
+.reviews-carousel-track .review-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(37, 99, 235, 0.4);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35), 0 0 24px rgba(37, 99, 235, 0.07);
+}
+
+/* Prev / Next arrow buttons */
+.carousel-control-btn {
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.25s ease;
+}
+
+.carousel-control-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.carousel-control-btn:hover {
+    background: rgba(37, 99, 235, 0.15);
+    border-color: rgba(37, 99, 235, 0.45);
+    color: #fff;
+    transform: scale(1.08);
+}
+
+.carousel-control-btn:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Dot indicators */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 2rem;
+}
+
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.carousel-dot.active {
+    background: var(--color-primary);
+    width: 24px;
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba(37, 99, 235, 0.5);
 }
 
 .review-header {
@@ -1290,9 +1369,9 @@ footer {
         margin-left: auto;
         margin-right: auto;
     }
-    .reviews-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
+    /* Carousel: show 2 cards on tablet */
+    .reviews-carousel-track .review-card {
+        flex: 0 0 calc(50% - 0.75rem);
     }
 }
 
@@ -1320,7 +1399,12 @@ footer {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    .reviews-grid {
-        grid-template-columns: 1fr;
+    /* Carousel: show 1 card on mobile */
+    .reviews-carousel-track .review-card {
+        flex: 0 0 100%;
+    }
+    .carousel-control-btn {
+        width: 38px;
+        height: 38px;
     }
 }
