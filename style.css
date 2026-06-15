@@ -1186,6 +1186,96 @@ footer {
     height: 100%;
 }
 
+/* Reviews Section */
+.reviews-section {
+    padding: 6rem 1.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 3rem auto 0 auto;
+}
+
+.review-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition-smooth);
+    backdrop-filter: blur(16px);
+    position: relative;
+    overflow: hidden;
+}
+
+.review-card::before {
+    content: '"';
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 8rem;
+    color: rgba(255, 255, 255, 0.03);
+    font-family: serif;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.review-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(37, 99, 235, 0.35);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35), 0 0 30px rgba(37, 99, 235, 0.04);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+}
+
+.reviewer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.reviewer-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.reviewer-business {
+    font-size: 0.85rem;
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.reviewer-location {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.review-rating {
+    color: #facc15;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.review-text {
+    font-size: 0.925rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin: 0;
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .features-grid {
@@ -1199,6 +1289,10 @@ footer {
         max-width: 480px;
         margin-left: auto;
         margin-right: auto;
+    }
+    .reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
     }
 }
 
@@ -1225,5 +1319,8 @@ footer {
     .download-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+    }
+    .reviews-grid {
+        grid-template-columns: 1fr;
     }
 }
