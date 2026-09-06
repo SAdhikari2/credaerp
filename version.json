@@ -1,5 +1,5 @@
 {
-  "version": "2.1.3",
+  "version": "2.2.1",
   "downloadUrlWindows": "https://credaerp.netlify.app/downloads/CredaERP-Windows.exe",
   "downloadUrlMacIntel": "https://credaerp.netlify.app/downloads/CredaERP-macOS-Intel.dmg",
   "downloadUrlMacSilicon": "https://credaerp.netlify.app/downloads/CredaERP-macOS-AppleSilicon.dmg"
