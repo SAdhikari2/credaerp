@@ -336,6 +336,8 @@ body::after {
 .feature-card-icon.inventory { background: rgba(34, 197, 94, 0.1); }
 .feature-card-icon.compliance { background: rgba(239, 68, 68, 0.1); }
 .feature-card-icon.decisions { background: rgba(245, 158, 11, 0.1); }
+.feature-card-icon.ai { background: rgba(139, 92, 246, 0.1); }
+.feature-card-icon.chat { background: rgba(16, 185, 129, 0.1); }
 
 .feature-card h3 {
     font-size: 1.5rem;
