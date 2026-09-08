@@ -192,14 +192,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ── Pricing Toggle Logic (INR only — for Indian businesses) ──────────
     const PRICES = {
-        // Yearly: ₹1,999 / ₹3,999 / ₹4,999  (set by owner)
-        // Quarterly: ~29% higher per year than annual plan
-        quarterly: { starter: 699,  growth: 1399, premium: 1699 },
-        yearly:    { starter: 1999, growth: 3999, premium: 4999 }
+        quarterly: { starter: 1699, growth: 2999, premium: 3499 },
+        yearly:    { starter: 4999, growth: 8999, premium: 9999 }
     };
 
     // Strikethrough shown on yearly tab = what 4 quarters would cost
-    const ORIGINALS_YEARLY = { starter: 2796, growth: 5596, premium: 6796 };
+    const ORIGINALS_YEARLY = { starter: 6796, growth: 11996, premium: 13996 };
 
     const PERIOD_LABELS = { quarterly: '/ quarter', yearly: '/ year' };
     const PLANS = ['starter', 'growth', 'premium'];
