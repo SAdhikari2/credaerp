@@ -328,6 +328,25 @@
             margin-top: 0; color: var(--primary-dark); display: flex; align-items: center; gap: 0.5rem; 
         }
 
+        
+        /* Search Dropdown */
+        .search-results {
+            position: absolute; top: 100%; left: 0; right: 0; background: white;
+            border: 1px solid var(--border); border-radius: 6px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); max-height: 350px;
+            overflow-y: auto; z-index: 50; list-style: none; margin-top: 5px; display: none;
+        }
+        .search-results li { margin: 0; border-bottom: 1px solid var(--border); }
+        .search-results li:last-child { border-bottom: none; }
+        .search-results a {
+            display: block; padding: 0.75rem 1rem; color: var(--text-main);
+            text-decoration: none; font-size: 0.9rem;
+        }
+        .search-results a:hover { background-color: var(--primary-light); color: var(--primary-dark); }
+        .search-match {
+            font-size: 0.75rem; color: var(--text-muted); display: block;
+            margin-top: 0.25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
         /* Mobile Responsiveness */
         @media (max-width: 1024px) {
             .main-content {
@@ -375,9 +394,11 @@
     <div class="container">
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
+            
             <div class="search-container">
                 <span class="search-icon">🔍</span>
                 <input type="text" id="searchInput" class="search-box" placeholder="Search manuals, guides, FAQs...">
+                <ul id="searchResults" class="search-results"></ul>
             </div>
             
             <ul class="sidebar-nav" id="navMenu">
@@ -834,19 +855,65 @@
     </div>
 
     <script>
-        // Search functionality
-        document.getElementById('searchInput').addEventListener('keyup', function() {
-            let filter = this.value.toLowerCase();
-            let sections = document.querySelectorAll('#contentSections section');
-            
-            sections.forEach(section => {
-                let text = section.innerText.toLowerCase();
-                if (text.includes(filter)) {
-                    section.style.display = '';
-                } else {
-                    section.style.display = 'none';
+        // Smart Search Functionality
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        
+        const searchableItems = [];
+        document.querySelectorAll('#contentSections h2, #contentSections h3, #contentSections h4').forEach(header => {
+            const section = header.closest('section');
+            if(section) {
+                let snippet = '';
+                let nextEl = header.nextElementSibling;
+                if(nextEl && (nextEl.tagName === 'P' || nextEl.tagName === 'UL')) {
+                    snippet = nextEl.innerText.substring(0, 80) + '...';
                 }
-            });
+                
+                if(!header.id) {
+                    header.id = 'heading-' + Math.random().toString(36).substr(2, 9);
+                }
+                
+                searchableItems.push({
+                    title: header.innerText,
+                    snippet: snippet,
+                    id: header.id,
+                    textToSearch: (header.innerText + ' ' + snippet).toLowerCase()
+                });
+            }
+        });
+
+        searchInput.addEventListener('input', function() {
+            let filter = this.value.toLowerCase().trim();
+            searchResults.innerHTML = '';
+            
+            if (filter.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
+            
+            let matches = searchableItems.filter(item => item.textToSearch.includes(filter));
+            
+            if (matches.length > 0) {
+                matches.slice(0, 8).forEach(match => {
+                    let li = document.createElement('li');
+                    li.innerHTML = `<a href="#${match.id}"><strong>${match.title}</strong><span class="search-match">${match.snippet}</span></a>`;
+                    li.querySelector('a').addEventListener('click', () => {
+                        searchResults.style.display = 'none';
+                        searchInput.value = '';
+                    });
+                    searchResults.appendChild(li);
+                });
+                searchResults.style.display = 'block';
+            } else {
+                searchResults.innerHTML = '<li style="padding: 1rem; color: #64748b; font-size: 0.9rem; text-align: center;">No results found</li>';
+                searchResults.style.display = 'block';
+            }
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                searchResults.style.display = 'none';
+            }
         });
 
         // Smooth scroll and active state
