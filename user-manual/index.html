@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CredaERP User Manual & Help Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --sidebar-bg: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --bg-main: #ffffff;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-main);
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 320px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            overflow-y: auto;
+            padding: 2rem 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .sidebar h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar-nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: block;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-nav a:hover, .sidebar-nav a.active {
+            background-color: #e0e7ff;
+            color: var(--primary);
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 3rem 4rem;
+            max-width: 1100px;
+        }
+
+        .header {
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 2rem;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-dark);
+            border-bottom: 2px solid #e0e7ff;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .callout {
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid;
+            background-color: #f8fafc;
+        }
+
+        .callout.info {
+            border-left-color: var(--primary);
+            background-color: #eff6ff;
+        }
+
+        .callout.warning {
+            border-left-color: var(--warning);
+            background-color: #fef3c7;
+        }
+
+        .callout.danger {
+            border-left-color: var(--danger);
+            background-color: #fef2f2;
+        }
+
+        .callout strong {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--sidebar-bg);
+            font-weight: 600;
+        }
+
+        kbd {
+            background-color: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            padding: 0.1rem 0.4rem;
+            font-size: 0.85em;
+            font-family: monospace;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 1.5rem;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+            .main-content {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h2>🏪 CredaERP Help</h2>
+        <input type="text" id="searchInput" class="search-box" placeholder="Search documentation...">
+        <ul class="sidebar-nav" id="navMenu">
+            <li><a href="#quick-action" class="active">Quick Action Index</a></li>
+            <li><a href="#getting-started">Getting Started (First 7 Days)</a></li>
+            <li><a href="#sales-billing">Sales & Billing (POS)</a></li>
+            <li><a href="#purchase">Purchase & Procurement</a></li>
+            <li><a href="#inventory">Inventory & Stock</a></li>
+            <li><a href="#customers-vendors">Customers & Vendors</a></li>
+            <li><a href="#gst-compliance">GST & Compliance</a></li>
+            <li><a href="#reports">Reports & Analytics</a></li>
+            <li><a href="#migration">Migration from Old Software</a></li>
+            <li><a href="#backup-restore">Backup & Restore</a></li>
+            <li><a href="#troubleshooting">Troubleshooting Trees</a></li>
+            <li><a href="#checklists">Month & Year-End Checklists</a></li>
+            <li><a href="#keyboard-shortcuts">Keyboard Shortcuts</a></li>
+            <li><a href="#faq">Frequently Asked Questions</a></li>
+        </ul>
+    </aside>
+
+    <main class="main-content">
+        <header class="header">
+            <h1>CredaERP User Manual & Self-Service Center</h1>
+            <p>Version 2.1.0 | A complete guide for Pharmacy Owners and Billing Staff</p>
+        </header>
+
+        <div id="contentSections">
+            
+            <section id="quick-action">
+                <h2>"I WANT TO..." — Quick Action Index</h2>
+                <p>If you know what you want to do, use this index to find exactly where to click in the application.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>I want to...</th>
+                            <th>Go to... (Left Menu)</th>
+                            <th>Shortcut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Make a new sale / Bill a customer</strong></td>
+                            <td>CORE SALES &rarr; POS Terminal</td>
+                            <td><kbd>F1</kbd></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Add new purchased stock</strong></td>
+                            <td>OPERATIONS &rarr; Procurement</td>
+                            <td><kbd>F2</kbd></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Take an advance order</strong></td>
+                            <td>CORE SALES &rarr; Advance Orders</td>
+                            <td><kbd>F3</kbd></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Add or view customers</strong></td>
+                            <td>CORE SALES &rarr; Customers</td>
+                            <td><kbd>F5</kbd></td>
+                        </tr>
+                        <tr>
+                            <td><strong>View Sales & Profit Reports</strong></td>
+                            <td>INSIGHTS & AI &rarr; Reports & Analytics</td>
+                            <td><kbd>F8</kbd></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Check medicine stock / expiry</strong></td>
+                            <td>OPERATIONS &rarr; Inventory</td>
+                            <td><kbd>F9</kbd></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Close today's business (Day Close)</strong></td>
+                            <td>MAINTENANCE &rarr; Day Closure (EOD)</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Generate GST Reports</strong></td>
+                            <td>FINANCIALS &rarr; GST Filing</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Add or view vendors/suppliers</strong></td>
+                            <td>OPERATIONS &rarr; Vendors</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Backup Database</strong></td>
+                            <td>MAINTENANCE &rarr; System Settings &rarr; Database</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Logout</strong></td>
+                            <td>Top Right &rarr; Logout Button</td>
+                            <td><kbd>Ctrl+L</kbd></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="getting-started">
+                <h2>1. Getting Started: First 7 Days Guide</h2>
+                
+                <h3>Day 1: Setup & Opening Stock</h3>
+                <ol>
+                    <li><strong>Login</strong>: Open CredaERP and log in using your admin credentials.</li>
+                    <li><strong>Pharmacy Profile</strong>: Go to <em>System Settings &rarr; Company Profile</em> and enter your Pharmacy Name, GSTIN, and Address.</li>
+                    <li><strong>Add Medicines</strong>: Go to <em>Inventory</em> to add medicines manually, or use the <em>Bulk Import</em> tool if you have an Excel sheet from an old software.</li>
+                    <li><strong>Enter Opening Stock</strong>: Go to <em>Inventory &rarr; Stock Entry</em> to add the physical stock you currently have in your shop.</li>
+                </ol>
+                <div class="callout warning">
+                    <strong>Critical Warning:</strong> Do not use the "Purchase" screen to enter opening stock. Opening stock must be entered via "Stock Entry" or "Bulk Import" to prevent creating fake vendor payables and fake GST Input Tax Credit.
+                </div>
+
+                <h3>Day 2: Daily Operations</h3>
+                <ol>
+                    <li><strong>Billing (POS)</strong>: Press <kbd>F1</kbd> to open the POS Terminal. Practice making a cash sale and printing an invoice.</li>
+                    <li><strong>Procurement</strong>: Press <kbd>F2</kbd> when a new distributor box arrives. Enter the Vendor, Invoice No, Batch, Expiry, and Purchase Rate.</li>
+                    <li><strong>Day Closure</strong>: At the end of the day, go to <em>Day Closure (EOD)</em> to match your physical cash drawer with the system.</li>
+                </ol>
+            </section>
+
+            <section id="sales-billing">
+                <h2>2. Sales & Billing (POS Terminal)</h2>
+                <h3>How to Create a New Sale</h3>
+                <p>Use this when a customer is buying medicine at the counter.</p>
+                <ol>
+                    <li>Press <kbd>F1</kbd> or click <strong>POS Terminal</strong>.</li>
+                    <li>Click the search bar and type the medicine name or scan the barcode.</li>
+                    <li>A popup will show available batches. <strong>Select the correct batch</strong> (verify the expiry date and MRP).</li>
+                    <li>Enter the quantity.</li>
+                </ol>
+                
+                <div class="callout info">
+                    <strong>Important Note on Pack Sizes (Strips & Tablets)</strong><br>
+                    CredaERP expects you to enter quantity in two ways:<br><br>
+                    <strong>Method A (Total Pieces):</strong> Type the total number of tablets. If a strip has 10 tablets and you want to sell 1 strip, type <code>10</code> in the quantity box.<br>
+                    <strong>Method B (Strips + Loose):</strong> Use the plus sign. If you want to sell 2 strips and 5 loose tablets, type <code>2+5</code>. The system will automatically calculate the total correctly.
+                </div>
+
+                <ol start="5">
+                    <li>Apply any discounts if applicable.</li>
+                    <li>Select the Payment Method at the bottom (Cash, Card, UPI, Credit).</li>
+                    <li>Click <strong>Save & Print</strong>.</li>
+                </ol>
+
+                <h3>What happens if I make a mistake?</h3>
+                <p>If you billed the wrong item or wrong batch, you can cancel the bill (if done on the same day) via <em>Invoice History</em>, or process a <strong>Sales Return</strong>. Never manually adjust the stock for a returned item! Processing a proper Sales Return ensures the GST and Accounting ledgers are reversed correctly.</p>
+            </section>
+
+            <section id="purchase">
+                <h2>3. Purchase & Procurement</h2>
+                <h3>How to Enter a Supplier Invoice</h3>
+                <p>Use this when you receive new stock from a distributor with a tax invoice.</p>
+                <ol>
+                    <li>Press <kbd>F2</kbd> or click <strong>Procurement</strong>.</li>
+                    <li>Click <strong>New Purchase</strong>.</li>
+                    <li>Select the <strong>Vendor</strong> from the dropdown (or add a new one).</li>
+                    <li>Enter the Supplier's <strong>Invoice Number</strong> and <strong>Date</strong>.</li>
+                    <li>Search for the medicine.</li>
+                    <li>Enter the <strong>Batch No</strong>, <strong>Expiry</strong>, and <strong>Quantity</strong> (using the total pieces or <code>Strips+Loose</code> format).</li>
+                    <li>Verify the <strong>Purchase Rate</strong>, <strong>MRP</strong>, and <strong>GST %</strong>.</li>
+                    <li>Click <strong>Save Purchase</strong>.</li>
+                </ol>
+
+                <div class="callout info">
+                    <strong>Handling Free Schemes (e.g., Buy 10 Get 2 Free)</strong><br>
+                    When making a Purchase, enter <code>10</code> in the Quantity box and <code>2</code> in the Free box. CredaERP will add 12 to your physical stock, but calculate the Purchase Rate and GST based only on the 10 paid items.
+                </div>
+            </section>
+
+            <section id="inventory">
+                <h2>4. Inventory & Stock Management</h2>
+                <h3>Understanding the Pharmacy Quantity Model</h3>
+                <p>CredaERP uses a dual-quantity model to prevent confusion between strips and tablets.</p>
+                <ul>
+                    <li><strong>Pack Size</strong>: Set in the Medicine Master (e.g., 15 tablets per strip).</li>
+                    <li><strong>Total Pieces</strong>: CredaERP automatically multiplies strips by the pack size in the backend. If you buy 10 strips of 15 tablets, CredaERP correctly adds 150 tablets to your physical stock ledger.</li>
+                </ul>
+
+                <h3>How to Adjust Damaged or Expired Stock</h3>
+                <p>If you find a broken bottle or an expired strip that cannot be returned to the vendor:</p>
+                <ol>
+                    <li>Go to <strong>Inventory &rarr; Stock Adjustment</strong>.</li>
+                    <li>Select the medicine and batch.</li>
+                    <li>Select the Adjustment Type (e.g., <em>Damaged</em>, <em>Expired</em>).</li>
+                    <li>Enter the quantity to remove (use the total pieces or <code>Strips+Loose</code> format).</li>
+                    <li>Provide a remark and Save. This safely removes the stock and writes off the financial loss in accounting.</li>
+                </ol>
+            </section>
+            
+            <section id="customers-vendors">
+                <h2>5. Customers & Vendors</h2>
+                <h3>Managing Customer Accounts</h3>
+                <p>To create a customer profile (useful for chronic patients or credit sales), go to <strong>CORE SALES &rarr; Customers</strong>. You can view their purchase history and outstanding balances.</p>
+                <p>To receive a payment for a credit sale:</p>
+                <ol>
+                    <li>Open the Customer profile.</li>
+                    <li>Click <strong>Receive Payment</strong>.</li>
+                    <li>Select the invoice to settle and the payment mode (Cash/UPI/Bank).</li>
+                </ol>
+                
+                <h3>Managing Vendors</h3>
+                <p>Go to <strong>OPERATIONS &rarr; Vendors</strong> to view supplier ledgers. When you pay a distributor, open their ledger and record a <strong>Vendor Payment</strong> to decrease your outstanding payable balance.</p>
+            </section>
+
+            <section id="gst-compliance">
+                <h2>6. GST & Compliance</h2>
+                <h3>How does CredaERP handle GST?</h3>
+                <p>CredaERP is designed for strict Indian Pharmacy GST compliance.</p>
+                <ul>
+                    <li><strong>Sales (B2C)</strong>: POS prices are inclusive of GST. CredaERP accurately reverse-calculates the Taxable Value, CGST, and SGST so the invoice total exactly matches the cash paid by the customer.</li>
+                    <li><strong>Purchases (B2B)</strong>: Purchase entry calculates Input Tax Credit (ITC) based strictly on the supplier invoice.</li>
+                </ul>
+
+                <h3>How to Export GST Data for your CA</h3>
+                <ol>
+                    <li>Go to <strong>FINANCIALS &rarr; GST Filing</strong>.</li>
+                    <li>Select the month or quarter.</li>
+                    <li>Choose <strong>GSTR-1</strong> (for sales) or <strong>GSTR-3B</strong> (for summary).</li>
+                    <li>Click <strong>Export JSON</strong> or <strong>Export Excel</strong>.</li>
+                    <li>Send this file to your Chartered Accountant or upload it directly to the GST Portal.</li>
+                </ol>
+                <p><em>Disclaimer: For official tax compliance decisions, always consult your CA. CredaERP provides the operational calculations.</em></p>
+            </section>
+            
+            <section id="reports">
+                <h2>7. Reports & Analytics</h2>
+                <p>Go to <strong>INSIGHTS & AI &rarr; Reports & Analytics</strong> (<kbd>F8</kbd>) to access your business data.</p>
+                <ul>
+                    <li><strong>Sales Report:</strong> View total revenue, discounts given, and item-wise sales.</li>
+                    <li><strong>Profit Report:</strong> Calculates Gross Profit based on the actual Purchase Rate of the specific batches sold.</li>
+                    <li><strong>Expiry Report:</strong> Vital for pharmacy operations. Filter by "Next 30 Days" or "Next 90 Days" to pull stock before it expires.</li>
+                    <li><strong>Stock Valuation:</strong> Shows the total monetary value of your current inventory, useful for insurance and balance sheets.</li>
+                </ul>
+            </section>
+
+            <section id="migration">
+                <h2>8. Migration from Another Software</h2>
+                <p>If you are switching from Marg, Retailio, or another software:</p>
+                <ol>
+                    <li>Export your medicine master and stock from your old software to Excel/CSV.</li>
+                    <li>Go to <strong>MAINTENANCE &rarr; System Settings &rarr; Bulk Import</strong>.</li>
+                    <li>Upload the CSV file.</li>
+                    <li><strong>Important:</strong> The CSV Quantity must be the NET base-unit count (e.g., 750 tablets, not 50 strips).</li>
+                    <li>Click Start Import. The migration tool handles Opening Stock safely via <code>OPENING_BALANCE_EQUITY</code> without generating fake Vendor Payables or false GST ITC.</li>
+                </ol>
+            </section>
+
+            <section id="backup-restore">
+                <h2>9. Disaster Recovery: Backup & Restore</h2>
+                
+                <h3>How to Backup your Data (Daily)</h3>
+                <ol>
+                    <li>Go to <strong>MAINTENANCE &rarr; System Settings &rarr; Database</strong>.</li>
+                    <li>Click <strong>Create Backup</strong>.</li>
+                    <li>A <code>.sql</code> or <code>.backup</code> file will be generated. Copy this file to a USB drive or Google Drive immediately! Do this daily.</li>
+                </ol>
+
+                <h3>How to Restore your Data (If your PC crashes)</h3>
+                <ol>
+                    <li>Install a fresh copy of CredaERP on the new PC.</li>
+                    <li>Go to <strong>System Settings &rarr; Database</strong>.</li>
+                    <li>Click <strong>Restore Backup</strong> and select your file.</li>
+                </ol>
+                <div class="callout danger">
+                    <strong>CRITICAL RESTART REQUIRED:</strong> After the success message appears, you <strong>MUST close and restart CredaERP immediately</strong>. The restore engine replaces the entire database behind the scenes. If you try to bill without restarting, the application will crash.
+                </div>
+            </section>
+
+            <section id="troubleshooting">
+                <h2>10. Troubleshooting Decision Trees</h2>
+                
+                <h3>❌ My Stock is Incorrect!</h3>
+                <p><strong>Did you check the physical shelf?</strong><br> &rarr; Yes.</p>
+                <p><strong>Is it wrong for just one batch, or all batches?</strong></p>
+                <ul>
+                    <li><strong>Just one batch:</strong> Check if a recent Purchase was entered with the wrong quantity.</li>
+                    <li><strong>All batches:</strong> Check if the Pack Size (Strips vs Tabs) in the Medicine Master is wrong.</li>
+                </ul>
+                <p><strong>How to fix:</strong> Use <em>Inventory &rarr; Stock Adjustment</em> to correct the physical count.</p>
+
+                <h3>❌ My End-of-Day Cash Doesn't Match!</h3>
+                <p><strong>Did you process a UPI or Card payment but accidentally click "Cash" on the POS screen?</strong><br>
+                &rarr; Check the <em>Invoice History</em> for today. You can edit the payment method without canceling the bill.</p>
+                <p><strong>Did you take cash out of the drawer for a shop expense (e.g., tea, stationery)?</strong><br>
+                &rarr; You must record this in <em>FINANCIALS &rarr; Journal Voucher</em> as an Expense so the system knows the cash left the drawer.</p>
+            </section>
+            
+            <section id="checklists">
+                <h2>11. Operational Checklists</h2>
+                
+                <h3>Daily Closing Checklist</h3>
+                <ul>
+                    <li><strong>Reconcile Cash:</strong> Ensure the physical drawer matches the system ledger in <em>Day Closure (EOD)</em>.</li>
+                    <li><strong>Run Backup:</strong> Generate a database backup to a USB drive.</li>
+                </ul>
+                
+                <h3>Month-End Checklist</h3>
+                <ul>
+                    <li><strong>GST Preparation:</strong> Export GSTR-1 and send it to your CA.</li>
+                    <li><strong>Expiry Check:</strong> Check the <em>Expiry Report</em> for medicines expiring next month. Pull them from the shelf and initiate Purchase Returns to distributors.</li>
+                </ul>
+                
+                <h3>Financial Year-End Checklist</h3>
+                <ul>
+                    <li><strong>Full Backup:</strong> Take a complete database backup before closing the year.</li>
+                    <li><strong>Year-End Wizard:</strong> Run the <em>Financial Year End</em> tool from the Maintenance menu. This safely carries forward stock and ledger balances to the new financial year.</li>
+                    <li><strong>Invoice Series:</strong> Update your invoice prefix (e.g., from <code>SALE-2526/</code> to <code>SALE-2627/</code>) in Settings.</li>
+                </ul>
+            </section>
+            
+            <section id="keyboard-shortcuts">
+                <h2>12. Keyboard Shortcuts</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Shortcut</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><kbd>F1</kbd></td><td>Open POS Terminal (Sales)</td></tr>
+                        <tr><td><kbd>F2</kbd></td><td>Open Procurement (Purchase)</td></tr>
+                        <tr><td><kbd>F3</kbd></td><td>Open Advance Orders</td></tr>
+                        <tr><td><kbd>F5</kbd></td><td>Open Customers Directory</td></tr>
+                        <tr><td><kbd>F8</kbd></td><td>Open Reports & Analytics</td></tr>
+                        <tr><td><kbd>F9</kbd></td><td>Open Inventory</td></tr>
+                        <tr><td><kbd>Ctrl</kbd> + <kbd>L</kbd></td><td>Logout instantly</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="faq">
+                <h2>13. Frequently Asked Questions (FAQ)</h2>
+
+                <strong>Can I use CredaERP without the internet?</strong>
+                <p>Yes. CredaERP is an offline-first desktop application. The PostgreSQL database runs directly on your computer. You only need the internet for software updates or E-Invoice (IRN) generation.</p>
+
+                <strong>What happens if I accidentally close the day?</strong>
+                <p>Day closure locks the previous transactions to prevent tampering. If you made a mistake, an Admin user can use the "Reopen Day" function in the Day Closure screen (this action is heavily audited).</p>
+
+                <strong>What do I do if the application crashes during a sale?</strong>
+                <p>CredaERP uses strict database transactions. If the power fails right as you click Save, the system rolls back. When you restart, either the sale never happened (stock is safe), or the sale completed fully. There are no "half-finished" bills.</p>
+
+                <strong>Can I sell partial strips without breaking the stock?</strong>
+                <p>Yes! Simply type <code>0+5</code> (or just <code>5</code>) in the quantity box. The system correctly deducts exactly 5 tablets from the master stock without messing up your strip counts.</p>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        // Simple search functionality for the sidebar
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            let filter = this.value.toLowerCase();
+            let sections = document.querySelectorAll('#contentSections section');
+            
+            sections.forEach(section => {
+                let text = section.innerText.toLowerCase();
+                if (text.includes(filter)) {
+                    section.style.display = '';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        });
+
+        // Highlight active sidebar link on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.sidebar-nav a');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 60) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
