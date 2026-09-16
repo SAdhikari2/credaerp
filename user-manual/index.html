@@ -347,6 +347,45 @@
             font-size: 0.75rem; color: var(--text-muted); display: block;
             margin-top: 0.25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
+        
+        /* Step Cards for Tutorials */
+        .step-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        .step-number {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--primary);
+            color: white;
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(79, 70, 229, 0.3);
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.25em 0.6em;
+            font-size: 0.75rem;
+            font-weight: 600;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: 0.375rem;
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            margin-right: 0.5rem;
+        }
+        .badge.warning { background-color: #fef3c7; color: #92400e; }
+        .badge.success { background-color: #d1fae5; color: #065f46; }
         /* Mobile Responsiveness */
         @media (max-width: 1024px) {
             .main-content {
@@ -652,74 +691,128 @@
                 
                 <!-- Reports -->
                 <section id="reports">
-                    <h2>6. Understanding Reports (What tells you what)</h2>
-                    <p>The Reports module (<kbd>F8</kbd>) translates raw database transactions into actionable business intelligence.</p>
+                    <h2>6. Comprehensive Reports Dictionary</h2>
+                    <p>The Reports module (<kbd>F8</kbd>) translates raw database transactions into actionable intelligence. Here is the complete list of all reports available in CredaERP.</p>
 
+                    <h3>Inventory & Operations Reports</h3>
                     <div class="table-wrapper">
                         <table>
-                            <thead>
-                                <tr>
-                                    <th>Report Name</th>
-                                    <th>What it tells you</th>
-                                    <th>How the system calculates it</th>
-                                </tr>
-                            </thead>
+                            <thead><tr><th>Report Name</th><th>What it tells you</th></tr></thead>
                             <tbody>
-                                <tr>
-                                    <td><strong>Stock Report (Valuation)</strong></td>
-                                    <td>The total monetary value of medicines sitting on your shelves right now. Used for insurance or bank loans.</td>
-                                    <td>System multiplies the <em>Current Physical Quantity</em> of every batch by its specific <em>Purchase Rate (Landing Cost)</em>. It does NOT use MRP for valuation.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Gross Profit Report</strong></td>
-                                    <td>How much money you actually made after deducting the cost of the medicines sold.</td>
-                                    <td>(Total Sales Value without GST) minus (Purchase Rate of the exact batches sold).</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Expiry Report</strong></td>
-                                    <td>Which medicines will turn into dead-stock soon.</td>
-                                    <td>Scans all batches with a quantity > 0, filtering for Expiry Dates within your selected range (e.g., Next 90 Days).</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Vendor Ledger</strong></td>
-                                    <td>Exactly how much money you owe to each distributor.</td>
-                                    <td>(Total Purchases) minus (Purchase Returns) minus (Payments Made to Vendor).</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Customer Ledger</strong></td>
-                                    <td>Which credit customers owe you money.</td>
-                                    <td>(Total Credit Sales) minus (Sales Returns) minus (Payments Received).</td>
-                                </tr>
+                                <tr><td><strong>Movement Analysis</strong></td><td>Classifies inventory into Fast, Slow, and Non-moving items. Use this to stop buying dead stock and free up cash flow.</td></tr>
+                                <tr><td><strong>Reorder Alerts</strong></td><td>Scans current stock against minimum threshold levels. Use this every morning to build your distributor purchase orders.</td></tr>
+                                <tr><td><strong>Expiry Monitoring</strong></td><td>Highlights batches expiring within X days. Use this to pull stock from shelves and process Purchase Returns before you lose money.</td></tr>
+                                <tr><td><strong>Stock Valuation</strong></td><td>Calculates the total monetary value of your physical shelf stock based on actual Purchase Landing Cost (not MRP).</td></tr>
+                                <tr><td><strong>Gross Profit Report</strong></td><td>Calculates exact profit margin by subtracting the specific batch purchase rate from the sales value.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Regulatory & Compliance Registers</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead><tr><th>Report Name</th><th>What it tells you</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Narcotics Register</strong></td><td>Mandatory controlled-drug dispensing register tracking patient, doctor, batch, and quantity. Keep ready for inspector visits.</td></tr>
+                                <tr><td><strong>Schedule H1 Register</strong></td><td>Prescription-linked sales history for Schedule H1 drugs, logging doctor references as required by Indian Drug laws.</td></tr>
+                                <tr><td><strong>H Register</strong></td><td>Secondary schedule register for standard prescription (Schedule H) drugs.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>GST Audit Reports (Working Papers)</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead><tr><th>Report Name</th><th>What it tells you</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>GSTR-1 Register</strong></td><td>The raw audit trail of all outward supplies (B2B, B2C, Credit Notes). Check this before pushing data to the GST Portal.</td></tr>
+                                <tr><td><strong>GSTR-3B Draft</strong></td><td>Draft computation of your monthly GSTR-3B tax liability, pulling ITC and Output Tax directly from your books.</td></tr>
+                                <tr><td><strong>GSTR-2B Reconciliation</strong></td><td>Matches your books (Purchases) against what your vendors uploaded to the portal (GSTR-2B). Highlights missing ITC.</td></tr>
+                                <tr><td><strong>GSTR-2B Supplier Summary</strong></td><td>Groups ITC mismatches by Vendor so you know exactly which distributor to call to fix missing invoices.</td></tr>
+                                <tr><td><strong>GSTR-1 Filed vs Books</strong></td><td>Compares what you actually filed on the portal vs what is in your database to catch post-filing tampered invoices.</td></tr>
+                                <tr><td><strong>IMS Review</strong></td><td>Invoice Management System review report showing accepted/rejected/pending vendor invoices.</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </section>
-
+<!-- GST Compliance -->
                 <!-- GST Compliance -->
                 <section id="gst-compliance">
-                    <h2>7. Deep Dive: GST Issues & Resolutions</h2>
-                    <p>GST filing can be stressful. CredaERP automates the math, but you must understand how to fix data entry mistakes.</p>
+                    <h2>7. DIY Guide: How to File Your Own GST (No CA Required)</h2>
+                    <p>CredaERP is designed so intuitively that pharmacy owners can bypass expensive CA fees and file their own GST returns directly. The Government GST portal requires two main filings every month (or quarter): <strong>GSTR-1</strong> (Your Sales) and <strong>GSTR-3B</strong> (Your Tax Payment).</p>
 
-                    <h3>GSTR-1 vs GSTR-3B in CredaERP</h3>
+                    <div class="callout success">
+                        <div class="callout-header">💡 The Golden Rule of GST</div>
+                        <p>Before you begin filing, you MUST finish entering all your purchase bills for the month, and you MUST complete your Day Closure for the last day of the month. Never file GST if you have pending data entry.</p>
+                    </div>
+
+                    <h3>Step-by-Step Filing Workflow</h3>
+
+                    <div class="step-card">
+                        <div class="step-number">STEP 1</div>
+                        <h4>Fix Data Errors (Correction Center)</h4>
+                        <p>Go to <strong>FINANCIALS &rarr; GST Filing &rarr; Correction Center</strong>.</p>
+                        <p>CredaERP automatically scans your entire database for the selected month. If you accidentally entered a 14-digit GSTIN instead of 15 digits, or sold a B2B invoice to a clinic but forgot their GSTIN, the Correction Center will list it here.</p>
+                        <ul>
+                            <li><span class="badge warning">Action Required</span> You must resolve all <strong>Red (High Severity)</strong> warnings before proceeding. The GST portal will reject your file if these exist.</li>
+                            <li>Simply click on the error, fix the value, and save.</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">STEP 2</div>
+                        <h4>Reconcile Vendor Bills (GSTR-2B)</h4>
+                        <p>You need to check if the distributors you bought from actually paid <em>their</em> taxes to the government. If they didn't, the government won't give you Input Tax Credit (ITC).</p>
+                        <ol>
+                            <li>Log in to the Government GST Portal.</li>
+                            <li>Download the <strong>GSTR-2B JSON file</strong> for the month.</li>
+                            <li>Open CredaERP, go to <strong>FINANCIALS &rarr; GST Filing &rarr; Reconciliation</strong>.</li>
+                            <li>Upload the JSON file.</li>
+                            <li><span class="badge success">Magic Happens</span> CredaERP will match the portal file against your local purchase entries. It will show you a list of <strong>Missing Invoices</strong> (Vendor didn't upload) and <strong>Mismatches</strong> (Vendor uploaded Rs. 1000, but you entered Rs. 1200).</li>
+                            <li>Call the defaulting vendors and tell them to fix their uploads.</li>
+                        </ol>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">STEP 3</div>
+                        <h4>Generate & Upload GSTR-1 (Your Sales)</h4>
+                        <p>GSTR-1 tells the government exactly what you sold. It must be filed by the 11th of the next month.</p>
+                        <ol>
+                            <li>In CredaERP, go to <strong>FINANCIALS &rarr; GST Filing &rarr; GSTR-1 Details</strong>.</li>
+                            <li>Select the month and click <strong>Generate GSTR-1</strong>.</li>
+                            <li>Review the summary on the screen. (B2C sales are grouped together, B2B sales are listed invoice-by-invoice).</li>
+                            <li>Click <strong>Export JSON</strong>.</li>
+                            <li>Log in to the Government GST Portal, go to <em>Returns Dashboard &rarr; GSTR-1 &rarr; Prepare Offline</em>.</li>
+                            <li>Upload the JSON file you just exported from CredaERP. Submit and File!</li>
+                        </ol>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">STEP 4</div>
+                        <h4>File GSTR-3B (Tax Payment)</h4>
+                        <p>GSTR-3B is where you actually pay the tax. It must be filed by the 20th of the next month. The government auto-populates this form based on your GSTR-1 (Output Tax) and GSTR-2B (Input Tax).</p>
+                        <ol>
+                            <li>In CredaERP, go to <strong>FINANCIALS &rarr; GST Filing &rarr; GSTR-3B Summary</strong>.</li>
+                            <li>This screen shows you what your books say you owe. <strong>Total Tax on Sales minus Total Tax on Purchases.</strong></li>
+                            <li>On the Government GST Portal, open the GSTR-3B form.</li>
+                            <li><span class="badge warning">Crucial Check</span> Compare the numbers on the Government Portal with the numbers on the CredaERP screen. They should match perfectly. (Minor penny differences are normal due to rounding).</li>
+                            <li>If everything matches, generate the Challan on the portal and pay the net tax amount via net banking.</li>
+                        </ol>
+                    </div>
+
+                    <h3>Understanding the CA Dashboard</h3>
+                    <p>Even if you file yourself, the <strong>CA Dashboard</strong> is highly useful for owners. It provides a real-time health check:</p>
                     <ul>
-                        <li><strong>GSTR-1 (Sales):</strong> When you export GSTR-1 from CredaERP, it contains all your Output Tax. B2C sales (walk-in patients) are grouped by tax rate. B2B sales (clinics with GSTINs) are listed invoice-by-invoice.</li>
-                        <li><strong>GSTR-3B (Summary):</strong> This report summarizes your Total Sales Tax minus your Input Tax Credit (purchases). This tells you exactly what you have to pay the government.</li>
+                        <li><strong>Net GST Payable:</strong> Tells you exactly how much cash you need to keep in your bank account for the 20th of next month.</li>
+                        <li><strong>Tax Distribution Chart:</strong> Shows what percentage of your sales fall under 12% vs 18% GST.</li>
                     </ul>
 
                     <div class="scenario-box">
-                        <h4>💡 Scenario: The portal is rejecting my B2C Invoice due to a "Taxable Value Mismatch"</h4>
-                        <p><strong>Why this happens:</strong> In pharmacy retail, MRP includes GST. Sometimes, reverse-calculating the tax creates a 1-paisa decimal mismatch compared to the GST portal's rigid math.</p>
-                        <p><strong>How CredaERP fixes it:</strong> CredaERP uses a specialized B2C inclusive rounding hack. It forces the Taxable Value to absorb any fractional penny differences so that (Taxable + Tax) = Exact Cash Paid. You do not need to intervene; just export the JSON from the <em>GST Filing</em> screen and upload it.</p>
-                    </div>
-
-                    <div class="scenario-box">
-                        <h4>💡 Scenario: I billed an item at 18% GST, but it should have been 12%</h4>
-                        <p><strong>The Wrong Way:</strong> Changing the GST rate in the Medicine Master. This will NOT fix the old invoices that are already saved in the database.</p>
-                        <p><strong>The Right Way:</strong> You must <em>Cancel</em> the wrong invoice in Invoice History (if it's the same month), fix the Medicine Master, and re-bill the customer. If the month is closed, you must issue a Sales Return (Credit Note) for the 18% item, and issue a fresh invoice at 12%.</p>
+                        <h4>💡 Scenario: QRMP Scheme (Quarterly Filers)</h4>
+                        <p>If your pharmacy has a turnover below Rs. 5 Crore, you might be on the QRMP scheme (Quarterly Return Filing and Monthly Payment). Instead of filing GSTR-1 every month, you only file it every 3 months. However, in Month 1 and 2, you must use the <strong>IFF (Invoice Furnishing Facility)</strong> tab in CredaERP to upload only your B2B sales (sales to clinics) so they can claim ITC. Use the <strong>PMT-06</strong> tab to calculate your monthly challan payment.</p>
                     </div>
                 </section>
-
-                <!-- Migration -->
+<!-- Migration -->
                 <section id="migration">
                     <h2>8. Migration from Another Software</h2>
                     <p>If you are switching from Marg, Retailio, or another software:</p>
