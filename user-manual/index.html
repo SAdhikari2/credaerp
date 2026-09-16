@@ -448,7 +448,8 @@
                 <li><a href="#returns-reversals">Returns, Reversals & ITC</a></li>
                 <li><a href="#inventory">Inventory & Expiry Mgt</a></li>
                 <li><a href="#reports">Reports & Analytics</a></li>
-                <li><a href="#gst-compliance">Deep Dive: GST Compliance</a></li>
+                <li><a href="#eod-closure">EOD Master Guide</a></li>
+                <li><a href="#gst-compliance">DIY GST Filing Guide</a></li>
                 <li><a href="#migration">Safe Migration Guide</a></li>
                 <li><a href="#backup-restore">Disaster Recovery</a></li>
                 <li><a href="#checklists">Operational Checklists</a></li>
@@ -738,7 +739,65 @@
 <!-- GST Compliance -->
                 <!-- GST Compliance -->
                 <section id="gst-compliance">
-                    <h2>7. DIY Guide: How to File Your Own GST (No CA Required)</h2>
+                    
+                <!-- Day Closure (EOD) -->
+                <section id="eod-closure">
+                    <h2>8. Day Closure (EOD) Master Guide</h2>
+                    <p>The Day Closure (End of Day) routine is the financial heartbeat of your pharmacy. It ensures that the physical cash in your drawer matches the digital ledger, and it cryptographically locks the day's invoices to prevent tampering. <strong>You must perform Day Closure every single night.</strong></p>
+
+                    <div class="callout warning">
+                        <div class="callout-header">⚠️ Stale Shift Lock (Forgot to close yesterday?)</div>
+                        <p>If you leave the pharmacy in a hurry and forget to close the day, CredaERP will automatically detect a "Stale Shift" the next morning. <strong>All billing and purchasing will be completely blocked</strong> until you run the Day Closure for the previous date. This strict rule prevents financial data from bleeding across different calendar dates.</p>
+                    </div>
+
+                    <h3>The 4-Step EOD Workflow</h3>
+
+                    <div class="step-card">
+                        <div class="step-number">STEP 1</div>
+                        <h4>Pre-Flight Validation</h4>
+                        <p>Go to <strong>MAINTENANCE &rarr; Day Closure (EOD)</strong>. Before the system even lets you start counting cash, it runs a pre-flight check on your active shift.</p>
+                        <p><strong>The EOD will be BLOCKED if:</strong></p>
+                        <ul>
+                            <li><strong>You have Held/Suspended Bills:</strong> If a cashier suspended a bill during rush hour and forgot about it, you must recall it in the POS (<kbd>F1</kbd>) and either complete the sale or cancel it.</li>
+                            <li><strong>You have Pending Advance Orders:</strong> All advance orders scheduled for today must be marked as fulfilled or cancelled.</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">STEP 2</div>
+                        <h4>Cash Drawer Reconciliation</h4>
+                        <p>Once pre-flight passes, the screen will show you the <strong>Expected Cash</strong>. This is calculated as:</p>
+                        <p><em>(Morning Opening Balance) + (Cash Sales) + (Customer Credit Collections) - (Vendor Payments) - (Shop Expenses)</em></p>
+                        <ol>
+                            <li>Empty your physical cash drawer.</li>
+                            <li>Count every note and coin.</li>
+                            <li>Type the actual physical total into the <strong>Actual Cash</strong> box.</li>
+                        </ol>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">STEP 3</div>
+                        <h4>Digital Settlement (Card / UPI)</h4>
+                        <p>Do not just assume the UPI machine matches the software.</p>
+                        <ol>
+                            <li>Print the "Batch Settlement Slip" from your physical Card/UPI swiping machine (e.g., PineLabs / Paytm Soundbox).</li>
+                            <li>Compare the total on the printed slip with the <strong>Expected UPI/Card</strong> on the CredaERP screen.</li>
+                            <li>If they match, you are perfectly reconciled. If they don't, check <em>Invoice History</em> to see if a cashier clicked "Cash" when the customer actually paid via UPI.</li>
+                        </ol>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">STEP 4</div>
+                        <h4>Handle Shortages & Lock the Day</h4>
+                        <p>If your actual cash is Rs. 50 less than the expected cash, CredaERP will highlight the difference in red. You cannot close the day with an unexplained difference.</p>
+                        <ul>
+                            <li><strong>To fix a shortage:</strong> Did you buy tea for the staff and forget to enter it? Go to <em>FINANCIALS &rarr; Journal Voucher</em> and add a Rs. 50 expense. Come back to EOD, and the expected cash will drop to match your physical cash.</li>
+                            <li><strong>Locking:</strong> Once the difference is 0, click <strong>Close Day</strong>. The system will securely lock all invoices, seal the ledger, and log out the shift.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                    <h2>9. DIY Guide: How to File Your Own GST (No CA Required)</h2>
                     <p>CredaERP is designed so intuitively that pharmacy owners can bypass expensive CA fees and file their own GST returns directly. The Government GST portal requires two main filings every month (or quarter): <strong>GSTR-1</strong> (Your Sales) and <strong>GSTR-3B</strong> (Your Tax Payment).</p>
 
                     <div class="callout success">
@@ -814,7 +873,7 @@
                 </section>
 <!-- Migration -->
                 <section id="migration">
-                    <h2>8. Migration from Another Software</h2>
+                    <h2>10. Migration from Another Software</h2>
                     <p>If you are switching from Marg, Retailio, or another software:</p>
                     <ol>
                         <li>Export your medicine master and stock from your old software to Excel/CSV.</li>
@@ -827,7 +886,7 @@
 
                 <!-- Backup & Restore -->
                 <section id="backup-restore">
-                    <h2>9. Disaster Recovery: Backup & Restore</h2>
+                    <h2>11. Disaster Recovery: Backup & Restore</h2>
                     <p>Hardware fails. Hard drives crash. Ransomware happens. Your data is your business.</p>
                     
                     <div class="callout success">
@@ -844,7 +903,7 @@
 
                 <!-- Checklists -->
                 <section id="checklists">
-                    <h2>10. Operational Checklists</h2>
+                    <h2>12. Operational Checklists</h2>
                     
                     <h3>☀️ Opening the Shop</h3>
                     <ul class="checklist">
@@ -871,7 +930,7 @@
                 
                 <!-- Keyboard Shortcuts -->
                 <section id="keyboard-shortcuts">
-                    <h2>11. Keyboard Shortcuts Reference</h2>
+                    <h2>13. Keyboard Shortcuts Reference</h2>
                     <p>Memorize these to operate the pharmacy at maximum speed without a mouse.</p>
                     <div class="table-wrapper">
                         <table>
@@ -896,7 +955,7 @@
 
                 <!-- FAQ -->
                 <section id="faq">
-                    <h2>12. Frequently Asked Questions (FAQ)</h2>
+                    <h2>14. Frequently Asked Questions (FAQ)</h2>
 
 
 
@@ -918,7 +977,7 @@
 
                 <!-- Release Notes -->
                 <section id="release-notes">
-                    <h2>13. Release Notes (v3.0.1)</h2>
+                    <h2>15. Release Notes (v3.0.1)</h2>
                     <p>Welcome to CredaERP v3.0.1. This release focuses on rock-solid data integrity and GST compliance.</p>
                     <ul>
                         <li><strong>Fixed:</strong> Pack-size decimal truncation. Inventory math now utilizes strict Big-Decimal arithmetic to prevent losing fractional tablets during conversions.</li>
@@ -931,7 +990,7 @@
 
                 <!-- Contact Us -->
                 <section id="contact-us">
-                    <h2>14. Contact & Support</h2>
+                    <h2>16. Contact & Support</h2>
                     <p>If you encounter a database corruption error, need license assistance, or have operational issues not covered in this manual, please reach out to our support team.</p>
                     
                     <div class="scenario-box">
