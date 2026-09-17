@@ -444,7 +444,9 @@
                 <li><a href="#quick-action" class="active">Quick Action Index</a></li>
                 <li><a href="#getting-started">Day 1: Setup & Operations</a></li>
                 <li><a href="#sales-billing">Sales & POS Workflows</a></li>
-                <li><a href="#purchase">Procurement & Purchases</a></li>
+                <li><a href="#executive-dashboard">Executive Dashboard</a></li>
+                <li><a href="#purchase">Procurement Workspace</a></li>
+                <li><a href="#advance-orders">Advance Orders</a></li>
                 <li><a href="#returns-reversals">Returns, Reversals & ITC</a></li>
                 <li><a href="#inventory">Inventory & Expiry Mgt</a></li>
                 <li><a href="#reports">Reports & Analytics</a></li>
@@ -569,69 +571,193 @@
 
                 <!-- Sales & Billing -->
                 <section id="sales-billing">
-                    <h2>2. Sales & Billing (POS Terminal)</h2>
-                    <p>The POS terminal is optimized for rapid, high-volume pharmacy billing.</p>
-                    
-                    <h3>Creating a Standard Sale</h3>
-                    <ol>
-                        <li>Press <kbd>F1</kbd> to open the POS Terminal.</li>
-                        <li>Scan the barcode, or type the first 3 letters of the medicine to trigger the search.</li>
-                        <li>Select the required batch from the popup. <em>(Verify Expiry Date visually before clicking)</em>.</li>
-                        <li>Enter the exact quantity (See <strong>Pack Sizes</strong> rule below).</li>
-                        <li>Select the Payment Method (Cash/Card/UPI/Credit) and press Save.</li>
-                    </ol>
-                    
-                    <div class="callout info">
-                        <div class="callout-header">💊 How to Enter Quantity Correctly (Strips vs Tablets)</div>
-                        <p>CredaERP tracks inventory internally at the lowest base-unit (Tablet/Capsule) to prevent calculation errors. When entering quantity on the POS or Purchase screen, use one of these two methods:</p>
+                    <h2>2. The POS Terminal (Sales & Billing)</h2>
+                    <p>The POS (Point of Sale) Terminal is the heart of CredaERP, designed for rapid, high-volume pharmacy billing. Press <kbd>F1</kbd> anywhere in the software to instantly open the POS workspace. The workspace contains 5 powerful tabs.</p>
+
+                    <div class="step-card">
+                        <div class="step-number">TAB 1</div>
+                        <h4>📝 Create Invoice (The Billing Screen)</h4>
+                        <p>This is where you spend 90% of your time, ringing up customers at the counter.</p>
+                        
+                        <h5>Key Functionalities:</h5>
                         <ul>
-                            <li><strong>Method A (Total Base Pieces):</strong> Type the total number of tablets. If a strip has 10 tablets and you want to sell 1 strip, type <code>10</code>. If you want to sell 2 strips, type <code>20</code>.</li>
-                            <li><strong>Method B (Strips + Loose Formula):</strong> Type using the plus sign. To sell 2 strips and 5 loose tablets, type <code>2+5</code>. To sell 1 strip, type <code>1+0</code>. The system mathematically translates this based on the item's configured pack size.</li>
+                            <li><strong>Smart Search:</strong> Type the first 3 letters of a medicine or scan its barcode. The system instantly pops up a list of available batches.</li>
+                            <li><strong>Batch Selection (FEFO):</strong> The system forces the cashier to pick the exact batch they are holding. <em>(Real World Example: If you have Crocin Batch A expiring in 2026 and Batch B expiring in 2027, the cashier must pick Batch A to avoid dead stock losses.)</em></li>
+                            <li><strong>Multi-Pay (Split Tender):</strong> If a bill is Rs. 500, and the customer hands you a Rs. 200 note and wants to GPay the remaining Rs. 300, click the <em>Multi-Pay</em> button. Type 200 in Cash and 300 in UPI. This keeps your drawer perfectly balanced.</li>
+                            <li><strong>B2B Billing:</strong> If selling to a clinic, type the clinic's name in the Customer field. The system automatically converts the retail slip into a B2B Tax Invoice, segregating GST for their ITC claim.</li>
+                        </ul>
+
+                        <div class="callout info">
+                            <div class="callout-header">💊 Quantity Logic (Strips vs Tablets)</div>
+                            <p>CredaERP tracks stock at the tablet level to prevent math errors. If a strip has 10 tablets:</p>
+                            <ul>
+                                <li><strong>To sell 1 Strip:</strong> Type <code>10</code> OR type <code>1+0</code> (1 strip + 0 loose).</li>
+                                <li><strong>To sell 2 Strips and 4 loose tablets:</strong> Type <code>2+4</code>. The system mathematically deducts 24 tablets from the master stock without breaking the strip inventory.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">TAB 2</div>
+                        <h4>📜 Invoice History</h4>
+                        <p>This tab is a digital copy of every bill generated in your pharmacy.</p>
+                        
+                        <h5>Key Functionalities:</h5>
+                        <ul>
+                            <li><strong>Reprinting:</strong> <em>(Real World Example: The power cuts exactly as you hit Save. The bill is saved, but the thermal printer dies. Don't re-bill! Just go to Invoice History, find the top bill, and click <strong>Reprint</strong>.)</em></li>
+                            <li><strong>Cancellation:</strong> If a cashier bills the wrong item, they can cancel the invoice here. <strong>Note:</strong> You can only cancel an invoice if the Day Closure for that date has not been completed. Once the day is locked, you must issue a Sales Return instead.</li>
                         </ul>
                     </div>
 
-                    <div class="scenario-box">
-                        <h4>💡 Scenario: Split Tender Payments (Half Cash, Half UPI)</h4>
-                        <p>If a customer's bill is Rs. 150, and they give you a Rs. 100 note and want to GPay the remaining Rs. 50:</p>
-                        <p>In the POS screen, do not just click "Cash". Use the <strong>Multi-Pay / Split Payment</strong> button. Enter `100` in the Cash box and `50` in the UPI box. This ensures your end-of-day drawer count and your bank reconciliation match perfectly.</p>
+                    <div class="step-card">
+                        <div class="step-number">TAB 3</div>
+                        <h4>🔄 Return Invoice (Credit Notes)</h4>
+                        <p>Handling returned medicines legally and safely.</p>
+                        
+                        <h5>Key Functionalities:</h5>
+                        <ul>
+                            <li><strong>Load by Bill No:</strong> Enter the original invoice number, and CredaERP loads the exact items, batches, and prices the customer originally paid.</li>
+                            <li><strong>Partial Returns:</strong> <em>(Real World Example: A patient bought a full strip of 10 tablets, but the doctor stopped the medication after 3 days. The patient returns 7 loose tablets. You load the bill, type <code>7</code> in the return quantity, and save.)</em></li>
+                            <li><strong>Financial & GST Impact:</strong> The system automatically puts 7 tablets back into physical stock, decreases today's revenue, and generates a GST Credit Note to legally reduce your tax liability for the month.</li>
+                        </ul>
                     </div>
-                    
-                    <div class="scenario-box">
-                        <h4>💡 Scenario: Printer Runs Out of Paper / Power Cut During Print</h4>
-                        <p>If the transaction was saved but the printer fails, <strong>do not re-enter the bill!</strong> The stock has already been deducted. Simply put new paper in the printer, press <kbd>F1</kbd>, go to <em>Invoice History</em>, select the top invoice, and click <strong>Reprint</strong>.</p>
+
+                    <div class="step-card">
+                        <div class="step-number">TAB 4</div>
+                        <h4>🛠️ Modify / Cancel Return</h4>
+                        <p>The history tab specifically for Sales Returns.</p>
+                        <ul>
+                            <li><strong>Audit Trail:</strong> View every Credit Note generated by your staff to prevent return-fraud (where cashiers fake a return and pocket the cash).</li>
+                            <li><strong>Reprint Credit Notes:</strong> If a B2B clinic requires a physical copy of the GST Credit Note for their records, reprint it here.</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">TAB 5</div>
+                        <h4>👥 Customer Master</h4>
+                        <p>A built-in CRM and Ledger system for managing chronic patients or B2B clinics.</p>
+                        
+                        <h5>Key Functionalities:</h5>
+                        <ul>
+                            <li><strong>Credit Ledgers (Udhaar):</strong> <em>(Real World Example: A local family buys medicines on credit all month. You bill them using the "Credit" payment type. At the end of the month, go to the Customer Master, open their profile, see they owe Rs. 4,500, and click <strong>Receive Payment</strong> when they hand you the cash.)</em></li>
+                            <li><strong>Default Discounts:</strong> You can edit a chronic patient's profile and set a "Default Discount %". Every time they are selected on the billing screen, the system automatically applies their special discount.</li>
+                            <li><strong>GSTIN Linking:</strong> Essential for wholesale billing. Save the clinic's GSTIN here so it automatically prints on their invoices.</li>
+                        </ul>
+                    </div>
+                </section>
+                
+                <!-- Analytics -->
+                <section id="executive-dashboard">
+                    <h2>3. Executive Dashboard & Analytics</h2>
+                    <p>The moment you log into CredaERP, you are greeted by the <strong>Executive Dashboard</strong>. This is your real-time analytics command center. It instantly computes thousands of database transactions to give you a live health check of your pharmacy without needing to run any manual reports.</p>
+
+                    <div class="step-card">
+                        <div class="step-number">KPIs</div>
+                        <h4>Key Performance Indicators (Top Row)</h4>
+                        <ul>
+                            <li><strong>Today's Sale vs Purchase:</strong> Tracks cash flow direction for the current day.</li>
+                            <li><strong>Estimated Gross Profit:</strong> <em>(Magic Metric)</em> CredaERP calculates the exact landing cost of the specific batches you sold this month and deducts it from your sales revenue, giving you a highly accurate, real-time profit estimate.</li>
+                            <li><strong>Held Sales:</strong> Warns you if cashiers have suspended bills that haven't been completed.</li>
+                            <li><strong>Value at Risk (EXP):</strong> Converts your expiring stock count into a monetary loss figure (e.g., "₹ 4,500 at risk"). This tells you exactly how much cash you will lose if you don't process a Purchase Return to the distributor.</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">GRAPHS</div>
+                        <h4>Visual Analytics (Charts)</h4>
+                        <ul>
+                            <li><strong>Monthly Revenue Analytics:</strong> A 30-day trendline showing your daily sales volume. Use this to identify peak shopping days (e.g., recognizing that Mondays are always your highest volume day).</li>
+                            <li><strong>Payment Collection Split (Pie Chart):</strong> A visual breakdown of Cash vs UPI vs Card payments. Useful for tracking digital adoption by your customers.</li>
+                            <li><strong>Fast Moving Items:</strong> A bar chart ranking your top-selling medicines over the last 30 days. Use this to negotiate better bulk-purchase discounts with distributors for these specific items.</li>
+                            <li><strong>Top Prescribing Doctors:</strong> Ranks which local clinics are sending you the most prescriptions. Extremely valuable for building relationships with local doctors.</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">ALERTS</div>
+                        <h4>Actionable Data Grids</h4>
+                        <p>The bottom of the dashboard features two grids that require your daily attention:</p>
+                        <ul>
+                            <li><strong>Recent Transactions:</strong> A live feed of what your cashiers are billing right now.</li>
+                            <li><strong>Critical — Expiring Stock:</strong> An automatic alert listing medicines that will expire in the next 30 days. You should click this list and physically pull these bottles from the shelf every morning.</li>
+                        </ul>
                     </div>
                 </section>
 
                 <!-- Purchase -->
                 <section id="purchase">
-                    <h2>3. Procurement & Purchases</h2>
-                    <p>Procurement handles inbound distributor invoices, stock increases, and GST ITC calculations.</p>
-                    
-                    <h3>Logging a Supplier Invoice</h3>
-                    <ol>
-                        <li>Press <kbd>F2</kbd> or navigate to <strong>Procurement &rarr; New Purchase</strong>.</li>
-                        <li>Select the <strong>Vendor</strong>.</li>
-                        <li>Input the exact <strong>Invoice Number</strong> and <strong>Date</strong> printed on the physical bill.</li>
-                        <li>Scan or search for the items received.</li>
-                        <li>Enter Batch, Expiry, and Quantity (using the <code>Strips+Loose</code> format).</li>
-                        <li>Verify that the calculated Invoice Total matches the physical paper bill before hitting Save.</li>
-                    </ol>
+                    <h2>4. Procurement Workspace (Purchases & Vendors)</h2>
+                    <p>The Procurement module (<kbd>F2</kbd>) handles your inbound distributor invoices, stock increases, and Vendor Ledgers. It contains 4 major tabs.</p>
 
-                    <div class="scenario-box">
-                        <h4>💡 Scenario: Free Schemes (Buy 10, Get 2 Free)</h4>
-                        <p>Distributors often provide bonus quantities. Enter <code>10</code> in the <em>Qty</em> box and <code>2</code> in the <em>Free Qty</em> box.</p>
-                        <p><strong>What the system does:</strong> It adds 12 physical units to your inventory for selling, but calculates the Purchase Rate (COGS) and GST ITC solely based on the cost of the 10 paid units. This correctly dilutes your average purchase cost, increasing your reported profit margins when you sell them.</p>
+                    <div class="step-card">
+                        <div class="step-number">TAB 1</div>
+                        <h4>🛒 Purchase Entry (Distributor Invoices)</h4>
+                        <p>This is where you log new stock arriving at your shop.</p>
+                        
+                        <h5>Key Functionalities:</h5>
+                        <ul>
+                            <li><strong>Smart GST Calculation:</strong> Once you select a vendor, enter the Invoice No and Date. As you add medicines, CredaERP automatically calculates the Input Tax Credit (ITC). Before saving, verify that the <em>Calculated Total</em> on the screen exactly matches the total on the distributor's paper bill.</li>
+                            <li><strong>Handling Free Schemes (e.g., Buy 10 Get 2):</strong> <em>(Real World Example: The distributor gives you 2 free bottles of cough syrup. In the grid, type <code>10</code> in Qty, and <code>2</code> in Free Qty. CredaERP adds 12 bottles to your physical shelf, but calculates your Purchase Landing Cost based only on the 10 paid bottles, correctly increasing your profit margin when you sell them.)</em></li>
+                            <li><strong>MRP vs Purchase Rate Safety Check:</strong> If a data-entry operator accidentally types a Purchase Rate that is higher than the MRP, the system blocks the save to prevent illegal pricing logic.</li>
+                        </ul>
                     </div>
-                    
-                    <div class="scenario-box">
-                        <h4>💡 Scenario: Purchase Rate is Higher than MRP?</h4>
-                        <p>If you accidentally type a Purchase Rate (e.g., Rs. 150) that exceeds the MRP (e.g., Rs. 120), CredaERP will highlight the row in red and prevent saving. A pharmacy cannot legally purchase medicine above the printed MRP. You must correct the typo before the system allows the invoice to commit.</p>
+
+                    <div class="step-card">
+                        <div class="step-number">TAB 2</div>
+                        <h4>📋 Orders & Returns</h4>
+                        <p>Manage outbound returns to the distributor.</p>
+                        <ul>
+                            <li><strong>Purchase Returns (Debit Notes):</strong> <em>(Real World Example: You pull 5 expired strips of Azithromycin from the shelf. You create a Purchase Return here. The system deducts the 5 strips from your stock, reduces your Vendor Payable ledger, and generates a GST Debit Note to reverse the ITC you claimed when you bought them.)</em></li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">TAB 3</div>
+                        <h4>📊 Registers</h4>
+                        <p>Your Purchase Audit Trail.</p>
+                        <ul>
+                            <li><strong>Purchase Register:</strong> A chronological ledger of every distributor invoice entered. If your CA asks for your "Purchase Book", this is what you export.</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">TAB 4</div>
+                        <h4>🏭 Vendors</h4>
+                        <p>The Vendor Master and Payable Ledger.</p>
+                        <ul>
+                            <li><strong>Vendor Profiles:</strong> Store the GSTIN, Drug License Number, and contact details of your distributors.</li>
+                            <li><strong>Paying Distributors:</strong> <em>(Real World Example: Your vendor 'Apollo Distributors' has an outstanding balance of Rs. 50,000. You write them a cheque for Rs. 20,000. Open their profile here, click <strong>Add Payment</strong>, select 'Bank', and enter 20,000. Their outstanding balance instantly drops to Rs. 30,000.)</em></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Advance Orders -->
+                <section id="advance-orders">
+                    <h2>5. Advance Orders Workspace</h2>
+                    <p>The Advance Orders module (<kbd>F3</kbd>) is crucial for retaining chronic patients when you don't have their medicine in stock.</p>
+
+                    <div class="step-card">
+                        <div class="step-number">ACTION</div>
+                        <h4>Booking & Fulfilling an Advance Order</h4>
+                        
+                        <h5>Key Functionalities:</h5>
+                        <ul>
+                            <li><strong>Booking the Order:</strong> <em>(Real World Example: A patient needs a rare cancer drug you don't stock. You open Advance Orders, select the Customer, add the drug name, and set the "Required By" date to tomorrow.)</em></li>
+                            <li><strong>Taking an Advance Payment:</strong> You can accept an advance deposit (e.g., Rs. 500) from the patient. This money is safely recorded in your cash drawer for today's EOD.</li>
+                            <li><strong>Fulfillment Tracking:</strong> The dashboard tracks all orders by status (<em>Pending</em>, <em>Procured</em>, <em>Fulfilled</em>).</li>
+                            <li><strong>Converting to Sale:</strong> Once the drug arrives from the distributor, you click <strong>Fulfill</strong> on the order. The system instantly converts the order into a POS Invoice, automatically deducting the Rs. 500 advance payment from their final bill!</li>
+                        </ul>
+                        
+                        <div class="callout warning">
+                            <div class="callout-header">⚠️ EOD Block</div>
+                            <p>You cannot close the day (EOD) if there are orders scheduled to be fulfilled today that are still in 'Pending' status. You must either fulfill them or change their target date.</p>
+                        </div>
                     </div>
                 </section>
 
                 <!-- Returns & Reversals -->
                 <section id="returns-reversals">
-                    <h2>4. Deep Dive: Returns, Reversals & ITC Impact</h2>
+                    <h2>6. Deep Dive: Returns, Reversals & ITC Impact</h2>
                     <p>Returning stock is the most complex operation in an ERP because it simultaneously touches Inventory, General Ledger Accounting, and Government GST Compliance. CredaERP handles all of this automatically, but you must use the correct screens.</p>
 
                     <h3>A. Sales Returns (Customer returning medicine to you)</h3>
@@ -667,32 +793,48 @@
 
                 <!-- Inventory & Stock -->
                 <section id="inventory">
-                    <h2>5. Inventory & Expiry Management</h2>
-                    <p>Maintaining an accurate digital ledger compared to your physical shelves is the most critical task for a pharmacy owner.</p>
+                    <h2>7. Inventory Workspace</h2>
+                    <p>Maintaining an accurate digital ledger compared to your physical shelves is the most critical task for a pharmacy owner. The Inventory workspace (<kbd>F9</kbd>) contains 3 major tabs.</p>
 
-                    <h3>Handling Expiries</h3>
-                    <p>Medicines expire on the last day of the printed month (e.g., 04/2026 expires on April 30, 2026). To prevent selling expired stock, CredaERP automatically blocks the batch from the POS screen once the date is reached.</p>
-                    
-                    <div class="callout warning">
-                        <div class="callout-header">⚠️ Avoid Dead Stock Loss</div>
-                        <p>Distributors only accept returns 3-6 months <em>before</em> expiry. Go to <strong>Reports &rarr; Expiry Report</strong> on the 1st of every month. Set the filter to "Next 90 Days", pull those physical boxes from your shelves, and process a <em>Purchase Return</em> to send them back to the vendor.</p>
+                    <div class="step-card">
+                        <div class="step-number">TAB 1</div>
+                        <h4>📦 Inventory List (The Medicine Master)</h4>
+                        <p>This is your core product catalog.</p>
+                        
+                        <h5>Key Functionalities:</h5>
+                        <ul>
+                            <li><strong>Pack Size Configuration:</strong> <em>(Real World Example: If you buy a box that contains 10 strips, and each strip has 15 tablets, you set the Pack Size to 15. The system uses this to automatically calculate `10 strips * 15 = 150 tablets` in the backend so your valuation is flawless.)</em></li>
+                            <li><strong>Tax & HSN Codes:</strong> Essential for GST. If a medicine changes from 12% to 18% GST, you update the master here.</li>
+                            <li><strong>Rack Mapping:</strong> Assign medicines to specific physical shelves (e.g., Rack A-3). The Rack Number prints on the POS screen, helping new staff find medicines instantly.</li>
+                        </ul>
                     </div>
 
-                    <div class="scenario-box">
-                        <h4>💡 Scenario: Same Medicine, Same Price, Different Expiry</h4>
-                        <p>If you receive <em>Crocin Advance</em> Batch A (Expires 2026) and Batch B (Expires 2027) with identical MRPs, the system tracks them independently. When billing, the POS will prompt the cashier to select a batch. <strong>Always enforce the FEFO rule (First Expiry, First Out).</strong> The cashier must look at the physical strip in their hand and select the exact matching batch in the software.</p>
+                    <div class="step-card">
+                        <div class="step-number">TAB 2</div>
+                        <h4>⚙️ Setup (Classifications)</h4>
+                        <p>Organizational configurations for reporting.</p>
+                        <ul>
+                            <li><strong>Categories & Manufacturers:</strong> Group medicines by Manufacturer (e.g., Cipla, Sun Pharma) or Category (e.g., Antibiotics, Syrups). This allows you to generate profit reports based on specific manufacturers.</li>
+                        </ul>
                     </div>
 
-                    <div class="scenario-box">
-                        <h4>💡 Scenario: Stock Adjustment for Broken Bottles</h4>
-                        <p>If a syrup bottle breaks on the floor, you cannot return it to the vendor, and you cannot sell it. You must write it off.</p>
-                        <p>Go to <strong>Inventory &rarr; Stock Adjustment</strong>. Select the batch, enter quantity <code>1</code>, set type to <em>Damaged</em>, and save. This removes 1 bottle from stock and records an accounting loss to ensure your end-of-year profit report is accurate.</p>
+                    <div class="step-card">
+                        <div class="step-number">TAB 3</div>
+                        <h4>📈 Stock (Adjustments & Opening Balances)</h4>
+                        <p>Where you manipulate physical stock counts outside of standard buying and selling.</p>
+                        
+                        <h5>Key Functionalities:</h5>
+                        <ul>
+                            <li><strong>Stock Entry (Opening Stock):</strong> When you first install CredaERP, use this screen to enter the physical stock sitting on your shelves. <strong>Crucial Rule:</strong> Never use Purchase Entry for opening stock, or you will artificially inflate your GST ITC and Vendor Payables.</li>
+                            <li><strong>Stock Adjustment (Damages/Breakages):</strong> <em>(Real World Example: A staff member drops a glass bottle of syrup on the floor. You cannot return it to the vendor. You go to Stock Adjustment, select the batch, enter quantity 1, set the reason to "Damaged", and save.)</em></li>
+                            <li><strong>Financial Impact of Adjustments:</strong> Adjusting stock down safely removes the item from your digital shelf and logs an accounting loss so your Year-End Profit Report remains perfectly accurate.</li>
+                        </ul>
                     </div>
                 </section>
                 
                 <!-- Reports -->
                 <section id="reports">
-                    <h2>6. Comprehensive Reports Dictionary</h2>
+                    <h2>8. Comprehensive Reports Dictionary</h2>
                     <p>The Reports module (<kbd>F8</kbd>) translates raw database transactions into actionable intelligence. Here is the complete list of all reports available in CredaERP.</p>
 
                     <h3>Inventory & Operations Reports</h3>
@@ -742,7 +884,7 @@
                     
                 <!-- Day Closure (EOD) -->
                 <section id="eod-closure">
-                    <h2>8. Day Closure (EOD) Master Guide</h2>
+                    <h2>10. Day Closure (EOD) Master Guide</h2>
                     <p>The Day Closure (End of Day) routine is the financial heartbeat of your pharmacy. It ensures that the physical cash in your drawer matches the digital ledger, and it cryptographically locks the day's invoices to prevent tampering. <strong>You must perform Day Closure every single night.</strong></p>
 
                     <div class="callout warning">
@@ -797,7 +939,7 @@
                     </div>
                 </section>
 
-                    <h2>9. DIY Guide: How to File Your Own GST (No CA Required)</h2>
+                    <h2>11. DIY Guide: How to File Your Own GST (No CA Required)</h2>
                     <p>CredaERP is designed so intuitively that pharmacy owners can bypass expensive CA fees and file their own GST returns directly. The Government GST portal requires two main filings every month (or quarter): <strong>GSTR-1</strong> (Your Sales) and <strong>GSTR-3B</strong> (Your Tax Payment).</p>
 
                     <div class="callout success">
@@ -873,7 +1015,7 @@
                 </section>
 <!-- Migration -->
                 <section id="migration">
-                    <h2>10. Migration from Another Software</h2>
+                    <h2>12. Migration from Another Software</h2>
                     <p>If you are switching from Marg, Retailio, or another software:</p>
                     <ol>
                         <li>Export your medicine master and stock from your old software to Excel/CSV.</li>
@@ -886,7 +1028,7 @@
 
                 <!-- Backup & Restore -->
                 <section id="backup-restore">
-                    <h2>11. Disaster Recovery: Backup & Restore</h2>
+                    <h2>13. Disaster Recovery: Backup & Restore</h2>
                     <p>Hardware fails. Hard drives crash. Ransomware happens. Your data is your business.</p>
                     
                     <div class="callout success">
@@ -903,7 +1045,7 @@
 
                 <!-- Checklists -->
                 <section id="checklists">
-                    <h2>12. Operational Checklists</h2>
+                    <h2>14. Operational Checklists</h2>
                     
                     <h3>☀️ Opening the Shop</h3>
                     <ul class="checklist">
@@ -930,7 +1072,7 @@
                 
                 <!-- Keyboard Shortcuts -->
                 <section id="keyboard-shortcuts">
-                    <h2>13. Keyboard Shortcuts Reference</h2>
+                    <h2>15. Keyboard Shortcuts Reference</h2>
                     <p>Memorize these to operate the pharmacy at maximum speed without a mouse.</p>
                     <div class="table-wrapper">
                         <table>
@@ -955,7 +1097,7 @@
 
                 <!-- FAQ -->
                 <section id="faq">
-                    <h2>14. Frequently Asked Questions (FAQ)</h2>
+                    <h2>16. Frequently Asked Questions (FAQ)</h2>
 
 
 
@@ -977,7 +1119,7 @@
 
                 <!-- Release Notes -->
                 <section id="release-notes">
-                    <h2>15. Release Notes (v3.0.1)</h2>
+                    <h2>17. Release Notes (v3.0.1)</h2>
                     <p>Welcome to CredaERP v3.0.1. This release focuses on rock-solid data integrity and GST compliance.</p>
                     <ul>
                         <li><strong>Fixed:</strong> Pack-size decimal truncation. Inventory math now utilizes strict Big-Decimal arithmetic to prevent losing fractional tablets during conversions.</li>
@@ -990,7 +1132,7 @@
 
                 <!-- Contact Us -->
                 <section id="contact-us">
-                    <h2>16. Contact & Support</h2>
+                    <h2>18. Contact & Support</h2>
                     <p>If you encounter a database corruption error, need license assistance, or have operational issues not covered in this manual, please reach out to our support team.</p>
                     
                     <div class="scenario-box">
