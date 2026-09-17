@@ -441,11 +441,12 @@
             </div>
             
             <ul class="sidebar-nav" id="navMenu">
-                <li><a href="#quick-action" class="active">Quick Action Index</a></li>
+                <li><a href="#quick-action" class="active">Quick Action Index (Tasks)</a></li>
                 <li><a href="#getting-started">Day 1: Setup & Operations</a></li>
                 <li><a href="#sales-billing">Sales & POS Workflows</a></li>
                 <li><a href="#executive-dashboard">Executive Dashboard</a></li>
                 <li><a href="#purchase">Procurement Workspace</a></li>
+                <li><a href="#end-to-end-procurement">End-to-End Procurement</a></li>
                 <li><a href="#advance-orders">Advance Orders</a></li>
                 <li><a href="#returns-reversals">Returns, Reversals & ITC</a></li>
                 <li><a href="#inventory">Inventory & Expiry Mgt</a></li>
@@ -454,6 +455,7 @@
                 <li><a href="#gst-compliance">DIY GST Filing Guide</a></li>
                 <li><a href="#migration">Safe Migration Guide</a></li>
                 <li><a href="#backup-restore">Disaster Recovery</a></li>
+                <li><a href="#support-diagnostics">Support Diagnostics</a></li>
                 <li><a href="#checklists">Operational Checklists</a></li>
                 <li><a href="#keyboard-shortcuts">Keyboard Shortcuts</a></li>
                 <li><a href="#faq">Frequently Asked Questions</a></li>
@@ -473,8 +475,8 @@
                 
                 <!-- Quick Action Index -->
                 <section id="quick-action">
-                    <h2>"I WANT TO..." — Quick Action Index</h2>
-                    <p>Stop searching menus. Use this index to find exactly where to click for your daily tasks.</p>
+                    <h2>Quick Action Index (Task Routing)</h2>
+                    <p>For rapid navigation, use this routing matrix to map operational tasks directly to their respective application modules and keyboard shortcuts.</p>
                     <div class="table-wrapper">
                         <table>
                             <thead>
@@ -634,14 +636,15 @@
 
                     <div class="step-card">
                         <div class="step-number">TAB 5</div>
-                        <h4>👥 Customer Master</h4>
+                        <h4>👥 Customer Master (CRM)</h4>
                         <p>A built-in CRM and Ledger system for managing chronic patients or B2B clinics.</p>
                         
-                        <h5>Key Functionalities:</h5>
+                        <h5>Deep-Dive Functionalities:</h5>
                         <ul>
-                            <li><strong>Credit Ledgers (Udhaar):</strong> <em>(Real World Example: A local family buys medicines on credit all month. You bill them using the "Credit" payment type. At the end of the month, go to the Customer Master, open their profile, see they owe Rs. 4,500, and click <strong>Receive Payment</strong> when they hand you the cash.)</em></li>
+                            <li><strong>Credit Ledgers (Udhaar):</strong> <em>(Real World Example: A local family buys medicines on credit all month. You bill them using the "Credit" payment type. At the end of the month, go to the Customer Master, open their profile, see they owe Rs. 4,500, and click <strong>Receive Payment</strong> when they hand you the cash. It updates the ledger instantly.)</em></li>
                             <li><strong>Default Discounts:</strong> You can edit a chronic patient's profile and set a "Default Discount %". Every time they are selected on the billing screen, the system automatically applies their special discount.</li>
-                            <li><strong>GSTIN Linking:</strong> Essential for wholesale billing. Save the clinic's GSTIN here so it automatically prints on their invoices.</li>
+                            <li><strong>GSTIN Linking (B2B):</strong> Essential for wholesale billing. Save the clinic's GSTIN here so it automatically prints on their Tax Invoices, allowing them to claim ITC.</li>
+                            <li><strong>Purchase History Tracking:</strong> View a specific customer's entire lifetime purchase history. Useful for checking what brand of medicine they bought 3 months ago if they forgot the name.</li>
                         </ul>
                     </div>
                 </section>
@@ -692,11 +695,23 @@
                     <div class="step-card">
                         <div class="step-number">TAB 1</div>
                         <h4>🛒 Purchase Entry (Distributor Invoices)</h4>
-                        <p>This is where you log new stock arriving at your shop.</p>
+                        <p>This is where you log new stock arriving at your shop. CredaERP provides two distinct ways to procure stock: <strong>Manual Entry</strong> and <strong>Smart AI Scanning</strong>.</p>
                         
-                        <h5>Key Functionalities:</h5>
+                        <div class="scenario-box">
+                            <h4>🤖 Procurement via AI (Smart Scan)</h4>
+                            <p>Instead of manually typing 50 rows of medicines from a distributor's paper bill, you can let CredaERP's AI do the heavy lifting.</p>
+                            <ol>
+                                <li>Ensure your <strong>Gemini API Key</strong> is configured in <em>System Settings &rarr; Integrations</em>.</li>
+                                <li>In the Purchase Entry tab, click the <strong>Scan Invoices</strong> button.</li>
+                                <li>Upload a photo or PDF of the physical distributor bill.</li>
+                                <li><span class="badge success">AI Extraction</span> The Invoice Scanner Service processes the document and automatically extracts the Vendor Name, Invoice Number, Date, Medicines, Batches, Expiries, Quantities, and GST totals.</li>
+                                <li>Review the extracted data grid on the screen, fix any typos, and hit Save. Your stock is instantly updated!</li>
+                            </ol>
+                        </div>
+
+                        <h5>Manual Entry Functionalities:</h5>
                         <ul>
-                            <li><strong>Smart GST Calculation:</strong> Once you select a vendor, enter the Invoice No and Date. As you add medicines, CredaERP automatically calculates the Input Tax Credit (ITC). Before saving, verify that the <em>Calculated Total</em> on the screen exactly matches the total on the distributor's paper bill.</li>
+                            <li><strong>Smart GST Calculation:</strong> Once you select a vendor, enter the Invoice No and Date. As you manually add medicines, CredaERP automatically calculates the Input Tax Credit (ITC). Before saving, verify that the <em>Calculated Total</em> on the screen exactly matches the total on the distributor's paper bill.</li>
                             <li><strong>Handling Free Schemes (e.g., Buy 10 Get 2):</strong> <em>(Real World Example: The distributor gives you 2 free bottles of cough syrup. In the grid, type <code>10</code> in Qty, and <code>2</code> in Free Qty. CredaERP adds 12 bottles to your physical shelf, but calculates your Purchase Landing Cost based only on the 10 paid bottles, correctly increasing your profit margin when you sell them.)</em></li>
                             <li><strong>MRP vs Purchase Rate Safety Check:</strong> If a data-entry operator accidentally types a Purchase Rate that is higher than the MRP, the system blocks the save to prevent illegal pricing logic.</li>
                         </ul>
@@ -708,6 +723,7 @@
                         <p>Manage outbound returns to the distributor.</p>
                         <ul>
                             <li><strong>Purchase Returns (Debit Notes):</strong> <em>(Real World Example: You pull 5 expired strips of Azithromycin from the shelf. You create a Purchase Return here. The system deducts the 5 strips from your stock, reduces your Vendor Payable ledger, and generates a GST Debit Note to reverse the ITC you claimed when you bought them.)</em></li>
+                            <li><strong>Purchase Orders (PO):</strong> Draft automated Purchase Orders based on the Reorder Alerts report, and send them to distributors. When the stock arrives, click <em>Receive Against PO</em> in Tab 1 to automatically convert the PO into an inward purchase bill.</li>
                         </ul>
                     </div>
 
@@ -722,12 +738,79 @@
 
                     <div class="step-card">
                         <div class="step-number">TAB 4</div>
-                        <h4>🏭 Vendors</h4>
-                        <p>The Vendor Master and Payable Ledger.</p>
+                        <h4>🏭 Vendor Master</h4>
+                        <p>The centralized hub for your distributors and Payable Ledgers.</p>
+                        
+                        <h5>Deep-Dive Functionalities:</h5>
                         <ul>
-                            <li><strong>Vendor Profiles:</strong> Store the GSTIN, Drug License Number, and contact details of your distributors.</li>
-                            <li><strong>Paying Distributors:</strong> <em>(Real World Example: Your vendor 'Apollo Distributors' has an outstanding balance of Rs. 50,000. You write them a cheque for Rs. 20,000. Open their profile here, click <strong>Add Payment</strong>, select 'Bank', and enter 20,000. Their outstanding balance instantly drops to Rs. 30,000.)</em></li>
+                            <li><strong>Comprehensive Profiles:</strong> Store the vendor's GSTIN, State Code (for IGST vs CGST/SGST calculation), Drug License Number (DL No), and WhatsApp Mobile Number (crucial for automated PO sending).</li>
+                            <li><strong>Automated Payable Ledgers:</strong> Every time you save a Purchase Entry on Credit, the Vendor's outstanding balance increases. Every time you create a Purchase Return, the balance decreases automatically.</li>
+                            <li><strong>Paying Distributors:</strong> <em>(Real World Example: Your vendor 'Apollo' has a balance of Rs. 50,000. You write them a cheque for Rs. 20,000. Open their profile here, click <strong>Add Payment</strong>, select 'Bank', and enter 20,000. Their outstanding balance instantly drops to Rs. 30,000.)</em></li>
                         </ul>
+                    </div>
+                </section>
+
+                
+                <section id="end-to-end-procurement">
+                    <h2>4.5. End-to-End Smart Procurement (Shortage to WhatsApp)</h2>
+                    <p>CredaERP features an incredibly powerful, semi-automated procurement pipeline. Instead of writing medicine names on a piece of paper and calling distributors, you can manage the entire lifecycle digitally—from detecting a shortage to WhatsApping the Purchase Order (PO), to automatically receiving the stock.</p>
+
+                    <h3>The 5-Step Smart Procurement Workflow</h3>
+
+                    <div class="step-card">
+                        <div class="step-number">STEP 1</div>
+                        <h4>Creating a Shortage</h4>
+                        <p>A "Shortage" is an internal list of medicines you need to buy. There are two ways items get added to this list:</p>
+                        <ul>
+                            <li><strong>Automatic Creation:</strong> Every night, CredaERP runs the <em>Reorder Alerts</em> engine. If a medicine drops below its minimum threshold, it is automatically added to the Shortage list.</li>
+                            <li><strong>Manual Creation:</strong> If a customer asks for a medicine you don't stock, press <kbd>F11</kbd> anywhere in the software to instantly open the <strong>Quick Shortage Entry</strong> window. Type the name, enter the quantity, and hit save.</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">STEP 2</div>
+                        <h4>Assigning Vendors to Shortages</h4>
+                        <p>Go to the <strong>Shortage Processing</strong> screen.</p>
+                        <ul>
+                            <li>You will see a list of all your needed medicines.</li>
+                            <li>In the <em>Vendor</em> column, click the dropdown to assign a specific distributor to each medicine.</li>
+                            <li><em>(Example: You assign 5 Cipla medicines to 'Apollo Distributors' and 2 Sun Pharma medicines to 'Metro Pharma'.)</em></li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">STEP 3</div>
+                        <h4>Generating the Purchase Order (PO)</h4>
+                        <p>Once your vendors are assigned, click the <strong>Process Selected</strong> button.</p>
+                        <ul>
+                            <li>CredaERP automatically groups the medicines by Vendor.</li>
+                            <li>It instantly generates official, numbered <strong>Purchase Orders (POs)</strong> for each distributor (e.g., PO-1001 for Apollo, PO-1002 for Metro).</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">STEP 4</div>
+                        <h4>WhatsApping the PO Automatically</h4>
+                        <p>You don't need to call the distributor!</p>
+                        <ol>
+                            <li>Go to the <strong>Orders & Returns</strong> tab (Purchase Order History).</li>
+                            <li>Select the PO you just generated.</li>
+                            <li>Click the <strong>Send via WhatsApp</strong> button.</li>
+                            <li><span class="badge success">Automation</span> CredaERP connects to the WhatsApp API, pulls the vendor's registered mobile number from the Vendor Master, formats a beautiful text-based Purchase Order, and sends it directly to their phone!</li>
+                        </ol>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">STEP 5</div>
+                        <h4>Receiving the PO (Full or Partial)</h4>
+                        <p>When the distributor's delivery boy arrives at your shop with the physical boxes:</p>
+                        <ol>
+                            <li>Go to the <strong>Purchase Entry</strong> tab.</li>
+                            <li>Click the <strong>Receive Against PO</strong> button and select the PO number.</li>
+                            <li>CredaERP instantly fills the purchase grid with the expected medicines and quantities.</li>
+                            <li><strong>Full Receipt:</strong> If they brought everything, just enter the batch numbers, check the GST, and hit Save.</li>
+                            <li><strong>Partial Receipt:</strong> <em>(Real World Example: You ordered 10 strips, but they only had 6 in stock.)</em> Simply change the quantity in the grid from 10 to 6 and hit Save. CredaERP will mark the PO as "Partially Fulfilled" so you know they still owe you 4 strips!</li>
+                        </ol>
                     </div>
                 </section>
 
@@ -1043,9 +1126,57 @@
                     </div>
                 </section>
 
+                
+                <!-- Support Diagnostics -->
+                <section id="support-diagnostics">
+                    <h2>14. Support & Diagnostics Center</h2>
+                    <p>When something goes wrong—whether it's a slow database, a failing backup, or a strange error—CredaERP provides a built-in diagnostic tool to help the support team fix your issue instantly. You can find this tool in <strong>MAINTENANCE &rarr; System Settings &rarr; Support & Diagnostics</strong>.</p>
+
+                    <h3>Step-by-Step Guide to the Diagnostics Tab</h3>
+
+                    <div class="step-card">
+                        <div class="step-number">STEP 1</div>
+                        <h4>Check the Application Health Status</h4>
+                        <p>At the top left of the screen, the system constantly monitors its own vitals. Click the <strong>Refresh Status</strong> button.</p>
+                        <ul>
+                            <li><strong>Database Status:</strong> Confirms if the PostgreSQL engine is running and responding to queries.</li>
+                            <li><strong>Backup Health:</strong> Checks if your last backup was completed successfully within the last 24 hours. (If this is red, your data is at risk!)</li>
+                        </ul>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">STEP 2</div>
+                        <h4>Generating a Support Bundle</h4>
+                        <p>If you need to contact CredaERP technical support, they will ask you for a "Support Bundle". This is a secure ZIP file containing error logs and system configurations.</p>
+                        <ol>
+                            <li>Locate the <strong>Diagnostic Actions</strong> section on the right side of the screen.</li>
+                            <li>Select the <strong>Log Range</strong> from the dropdown (e.g., "Last 24 Hours" or "Last 7 Days"). Only select what the support agent requests to keep the file size small.</li>
+                            <li>Click the blue <strong>Export Support Bundle</strong> button.</li>
+                            <li>Save the ZIP file to your Desktop and email it to <code>credaerp@gmail.com</code> or send it via WhatsApp.</li>
+                        </ol>
+                        <p><em>Note: The diagnostic output console below the button will show you exactly what is being zipped. It is strictly technical data; no patient or financial data is exposed.</em></p>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">STEP 3</div>
+                        <h4>Disaster Recovery: Rehash Checkpoints</h4>
+                        <p>You will see an orange button labeled <strong>🔐 Rehash DR Checkpoints</strong>.</p>
+                        <div class="callout danger">
+                            <div class="callout-header">⚠️ Admin Only Action</div>
+                            <p>CredaERP uses cryptographic hashing to protect your invoices from being tampered with. If an authorized support agent has to manually repair a corrupted database table on your computer, the system will detect the change and trigger a "Tamper Alert". Clicking this button re-signs the database hashes, telling the system that the manual changes were authorized. <strong>Do not click this unless instructed by Support.</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-number">STEP 4</div>
+                        <h4>Remote Assistance (Help Desk)</h4>
+                        <p>In the bottom-left corner, the <strong>Help Desk Details</strong> box displays the current support contact details. When instructed, please open <em>AnyDesk</em> or <em>RustDesk</em> on your computer and provide the ID to the support agent so they can securely remote into your system to resolve the issue.</p>
+                    </div>
+                </section>
+
                 <!-- Checklists -->
                 <section id="checklists">
-                    <h2>14. Operational Checklists</h2>
+                    <h2>15. Operational Checklists</h2>
                     
                     <h3>☀️ Opening the Shop</h3>
                     <ul class="checklist">
@@ -1072,7 +1203,7 @@
                 
                 <!-- Keyboard Shortcuts -->
                 <section id="keyboard-shortcuts">
-                    <h2>15. Keyboard Shortcuts Reference</h2>
+                    <h2>16. Keyboard Shortcuts Reference</h2>
                     <p>Memorize these to operate the pharmacy at maximum speed without a mouse.</p>
                     <div class="table-wrapper">
                         <table>
@@ -1097,7 +1228,7 @@
 
                 <!-- FAQ -->
                 <section id="faq">
-                    <h2>16. Frequently Asked Questions (FAQ)</h2>
+                    <h2>17. Frequently Asked Questions (FAQ)</h2>
 
 
 
@@ -1119,7 +1250,7 @@
 
                 <!-- Release Notes -->
                 <section id="release-notes">
-                    <h2>17. Release Notes (v3.0.1)</h2>
+                    <h2>18. Release Notes (v3.0.1)</h2>
                     <p>Welcome to CredaERP v3.0.1. This release focuses on rock-solid data integrity and GST compliance.</p>
                     <ul>
                         <li><strong>Fixed:</strong> Pack-size decimal truncation. Inventory math now utilizes strict Big-Decimal arithmetic to prevent losing fractional tablets during conversions.</li>
@@ -1132,7 +1263,7 @@
 
                 <!-- Contact Us -->
                 <section id="contact-us">
-                    <h2>18. Contact & Support</h2>
+                    <h2>19. Contact & Support</h2>
                     <p>If you encounter a database corruption error, need license assistance, or have operational issues not covered in this manual, please reach out to our support team.</p>
                     
                     <div class="scenario-box">
