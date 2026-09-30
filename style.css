@@ -1410,3 +1410,129 @@ footer {
         height: 38px;
     }
 }
+
+/* Conversion-focused landing page refinements */
+.hero {
+    max-width: 980px;
+    margin: 0 auto;
+    padding-top: 5rem;
+    padding-bottom: 2.25rem;
+}
+
+.hero-eyebrow,
+.section-kicker {
+    color: #7dd3fc;
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.hero h1 {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(2.75rem, 7vw, 5.25rem);
+    letter-spacing: -.055em;
+    line-height: 1.03;
+}
+
+.hero p:not(.hero-eyebrow) {
+    max-width: 720px;
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+}
+
+.hero-proof-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: .75rem 1.5rem;
+    margin-top: 2rem;
+    color: var(--text-muted);
+    font-size: .82rem;
+}
+
+.hero-proof-row span { display: inline-flex; align-items: center; gap: .3rem; }
+.hero-proof-row span::before { content: '✓'; color: #4ade80; font-weight: 800; }
+.hero-proof-row b { color: var(--text-secondary); }
+
+.audience-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: .6rem;
+    margin: 1rem 0 2.5rem;
+    padding: .85rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    background: rgba(255,255,255,.025);
+    color: var(--text-secondary);
+    font-size: .78rem;
+}
+
+.audience-strip span:not(.audience-label) {
+    padding: .3rem .65rem;
+    border-radius: 999px;
+    background: rgba(37,99,235,.1);
+    color: #bfdbfe;
+}
+
+.audience-label {
+    color: #fff;
+    font-weight: 700;
+    margin-right: .25rem;
+}
+
+.section-kicker { text-align: center; margin-bottom: .75rem; }
+.journey-section { padding: 5rem 0 4rem; }
+.journey-section .section-title { margin-bottom: 1rem; }
+.journey-section .section-subtitle { margin-top: 0; }
+.journey-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }
+.journey-card {
+    padding: 1.6rem;
+    min-height: 200px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    background: linear-gradient(145deg, rgba(37,99,235,.10), rgba(255,255,255,.025));
+    transition: var(--transition-smooth);
+}
+.journey-card:hover { transform: translateY(-5px); border-color: rgba(125,211,252,.35); }
+.journey-card span { color: #60a5fa; font-weight: 800; font-size: .8rem; letter-spacing: .12em; }
+.journey-card h3 { margin: 2.25rem 0 .5rem; font-size: 1.2rem; }
+.journey-card p { color: var(--text-secondary); font-size: .92rem; line-height: 1.65; }
+
+.features-section { padding-top: 4rem; }
+.feature-card { background: linear-gradient(145deg, rgba(15,23,42,.78), rgba(15,23,42,.42)); }
+.pricing-section .section-title { margin-bottom: 1rem; }
+.pricing-section::before {
+    content: 'Simple pricing. Real support. Start with zero risk.';
+    display: block;
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+.pricing-card.popular { transform: translateY(-8px); }
+.pricing-card.popular:hover { transform: translateY(-14px); }
+.cta-btn-primary { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+
+@media (max-width: 768px) {
+    .container { padding-top: 5.25rem; }
+    .nav-container { padding: .75rem 1rem; }
+    .logo { font-size: 1.25rem; gap: .5rem; }
+    .logo-img { width: 38px; height: 38px; }
+    .nav-links { display: flex; gap: .45rem; }
+    .nav-links > a:not(.nav-whatsapp-btn):not(.nav-cta-btn) { display: none; }
+    .nav-links a.nav-whatsapp-btn { padding: .45rem .6rem; font-size: 0; }
+    .nav-links a.nav-whatsapp-btn svg { margin: 0; }
+    .nav-links a.nav-cta-btn { padding: .5rem .75rem; font-size: .72rem; }
+    .hero { padding-top: 3rem; }
+    .hero-ctas { flex-direction: column; align-items: stretch; }
+    .hero-proof-row { gap: .5rem .9rem; }
+    .audience-strip { border-radius: 18px; }
+    .journey-grid { grid-template-columns: 1fr; }
+    .journey-card { min-height: auto; }
+    .journey-card h3 { margin-top: 1.25rem; }
+    .pricing-card.popular { transform: none; }
+}

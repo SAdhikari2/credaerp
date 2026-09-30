@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch((error) => {
                 console.error('Netlify Form submission error:', error);
-                submitBtn.textContent = 'Claim 3-Months Free Trial';
+                submitBtn.textContent = 'Send My Free Trial Request';
                 submitBtn.disabled = false;
                 alert('Something went wrong. Please try again or contact support.');
             });
@@ -256,40 +256,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize prices on load
     updatePrices();
-
-    // ── YouTube Video Modal ──────────────────────────────────────────────
-    const videoModal    = document.getElementById('video-modal');
-    const youtubePlayer = document.getElementById('youtube-player');
-    const videoCards    = document.querySelectorAll('.video-card');
-    const videoClose    = document.getElementById('video-modal-close');
-
-    if (videoModal && youtubePlayer) {
-        videoCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const videoId = card.dataset.videoId;
-                if (!videoId) return;
-                youtubePlayer.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
-                videoModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-
-        const closeVideo = () => {
-            videoModal.classList.remove('active');
-            youtubePlayer.src = '';
-            document.body.style.overflow = '';
-        };
-
-        if (videoClose) videoClose.addEventListener('click', closeVideo);
-
-        videoModal.addEventListener('click', e => {
-            if (e.target === videoModal) closeVideo();
-        });
-
-        document.addEventListener('keydown', e => {
-            if (e.key === 'Escape' && videoModal.classList.contains('active')) closeVideo();
-        });
-    }
 
     // ── Reviews Carousel ─────────────────────────────────────────────────
     const track     = document.getElementById('reviews-track');
@@ -413,4 +379,3 @@ document.addEventListener('DOMContentLoaded', () => {
         startAuto();
     }
 });
-
