@@ -774,6 +774,14 @@ body::after {
     font-weight: 600;
 }
 
+.monthly-equivalent {
+    margin-top: .35rem;
+    color: #bfdbfe;
+    font-size: .78rem;
+    font-weight: 700;
+    min-height: 1.2em;
+}
+
 /* Feature List */
 .features-list {
     list-style: none;
@@ -1506,13 +1514,24 @@ footer {
 .features-section { padding-top: 4rem; }
 .feature-card { background: linear-gradient(145deg, rgba(15,23,42,.78), rgba(15,23,42,.42)); }
 .pricing-section .section-title { margin-bottom: 1rem; }
-.pricing-section::before {
-    content: 'Simple pricing. Real support. Start with zero risk.';
-    display: block;
+.pricing-intro {
+    max-width: 650px;
+    margin: -0.25rem auto 2rem;
     text-align: center;
     color: var(--text-secondary);
-    margin-bottom: 2rem;
+    font-size: 1rem;
 }
+.pricing-value-note {
+    margin: -1.25rem auto 2.25rem;
+    text-align: center;
+    color: #bfdbfe;
+    font-size: .88rem;
+}
+.pricing-value-note strong { color: #fff; }
+.pricing-section::before {
+    content: none;
+}
+.reviews-section[hidden] { display: none !important; }
 .pricing-card.popular { transform: translateY(-8px); }
 .pricing-card.popular:hover { transform: translateY(-14px); }
 .cta-btn-primary { background: linear-gradient(135deg, #2563eb, #3b82f6); }

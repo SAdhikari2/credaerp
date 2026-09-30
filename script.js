@@ -214,6 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const periodEl   = document.getElementById(`${plan}-period`);
             const originalEl = document.getElementById(`${plan}-original`);
             const trialEl    = document.getElementById(`${plan}-trial-info`);
+            const equivalentEl = document.getElementById(`${plan}-equivalent`);
 
             if (!amountEl) return;
 
@@ -228,10 +229,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     originalEl.textContent      = `₹${ORIGINALS_YEARLY[plan].toLocaleString('en-IN')} if billed quarterly`;
                     originalEl.style.visibility = 'visible';
                     trialEl.textContent         = '🎉 Annual plan — save ~29%!';
+                    equivalentEl.textContent    = `₹${Math.round(prices[plan] / 12).toLocaleString('en-IN')}/month equivalent on annual billing`;
+                    equivalentEl.style.visibility = 'visible';
                 } else {
                     originalEl.textContent      = '';
                     originalEl.style.visibility = 'hidden';
                     trialEl.textContent         = '✨ 3 months free trial, then billed quarterly';
+                    equivalentEl.textContent    = '';
+                    equivalentEl.style.visibility = 'hidden';
                 }
 
                 amountEl.style.transform = 'translateY(0)';

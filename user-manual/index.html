@@ -386,6 +386,49 @@
         }
         .badge.warning { background-color: #fef3c7; color: #92400e; }
         .badge.success { background-color: #d1fae5; color: #065f46; }
+
+        /* Customer-first troubleshooting cards */
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .help-card {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.35rem 1.5rem;
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            box-shadow: 0 4px 10px rgba(15, 23, 42, .04);
+        }
+        .help-card h3 { margin: .35rem 0 .65rem; font-size: 1.08rem; }
+        .help-card p, .help-card li { font-size: .92rem; }
+        .help-card ol, .help-card ul { margin-bottom: .8rem; padding-left: 1.25rem; }
+        .help-icon { font-size: 1.6rem; }
+        .help-result {
+            border-top: 1px solid var(--border);
+            padding-top: .75rem;
+            margin-bottom: 0;
+            color: #334155;
+        }
+        .support-handoff {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #bfdbfe;
+            background: #eff6ff;
+        }
+        .support-handoff h3 { margin-top: 0; color: #1e3a8a; }
+        .support-handoff p { color: #1e40af; }
+        .handoff-steps { display: flex; flex-wrap: wrap; gap: .6rem; }
+        .handoff-steps span {
+            padding: .45rem .7rem;
+            border-radius: 999px;
+            background: #dbeafe;
+            color: #1e3a8a;
+            font-size: .8rem;
+            font-weight: 700;
+        }
         /* Mobile Responsiveness */
         @media (max-width: 1024px) {
             .main-content {
@@ -411,6 +454,9 @@
             }
             .navbar-links {
                 display: none;
+            }
+            .help-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -442,6 +488,7 @@
             
             <ul class="sidebar-nav" id="navMenu">
                 <li><a href="#quick-action" class="active">Quick Action Index (Tasks)</a></li>
+                <li><a href="#stuck-support">I’m Stuck — Fix It Now</a></li>
                 <li><a href="#getting-started">Day 1: Setup & Operations</a></li>
                 <li><a href="#sales-billing">Sales & POS Workflows</a></li>
                 <li><a href="#executive-dashboard">Executive Dashboard</a></li>
@@ -468,7 +515,11 @@
         <main class="main-content">
             <header class="header">
                 <h1>CredaERP Operations Manual</h1>
-                <p>The definitive guide for pharmacy owners, billing staff, and administrators to seamlessly operate CredaERP (v3.0.1).</p>
+                <p>Your practical, step-by-step support guide for running CredaERP (v3.0.1). When you are unsure where to click, start with <strong>I’m Stuck — Fix It Now</strong>, then follow the exact workflow for your task.</p>
+                <div class="callout info manual-start-callout">
+                    <div class="callout-header">👋 Use this manual like a support engineer</div>
+                    <p>Search the screen name, task or message you can see. Follow the numbered steps in order. If an action appears to fail, check the relevant history/register before trying it again. This prevents duplicate bills, purchases and stock changes.</p>
+                </div>
             </header>
 
             <div id="contentSections">
@@ -544,6 +595,134 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </section>
+
+                <!-- Stuck / self-service support -->
+                <section id="stuck-support">
+                    <h2>Before You Contact Support: I’m Stuck</h2>
+                    <p>This section is designed for the moment you are looking at a screen and are unsure what to do next. Follow the matching situation, complete the checks in order, and avoid repeating a transaction until you know whether it was saved.</p>
+
+                    <div class="callout warning">
+                        <div class="callout-header">🛑 The golden rule when something looks wrong</div>
+                        <p><strong>Do not bill, purchase, return or save the same transaction again until you have checked history.</strong> Open Invoice History, Purchase Register or the relevant list first. A second save can create duplicate stock or duplicate accounting entries.</p>
+                    </div>
+
+                    <div class="help-grid">
+                        <article class="help-card">
+                            <span class="help-icon">🧭</span>
+                            <h3>I don’t know where to click</h3>
+                            <p>Use the task map above, or press the shortcut for the workspace you need:</p>
+                            <ul>
+                                <li><kbd>F1</kbd> Sales / billing</li>
+                                <li><kbd>F2</kbd> Purchases / procurement</li>
+                                <li><kbd>F3</kbd> Advance orders</li>
+                                <li><kbd>F8</kbd> Reports and analytics</li>
+                                <li><kbd>F9</kbd> Inventory and stock</li>
+                            </ul>
+                            <p>If a shortcut does nothing, click once inside the application and try again. You can always use the visible menu instead.</p>
+                        </article>
+
+                        <article class="help-card">
+                            <span class="help-icon">🔎</span>
+                            <h3>I can’t find a medicine</h3>
+                            <ol>
+                                <li>Search using the first few letters, not the full brand name.</li>
+                                <li>Try the generic name, alternate spelling or barcode.</li>
+                                <li>Check <strong>Inventory → Medicine Master</strong>.</li>
+                                <li>If it is missing, add it or use Bulk Import, then return to billing and search again.</li>
+                            </ol>
+                            <p class="help-result"><strong>Still missing?</strong> Confirm you are in the correct store/company profile before importing the item.</p>
+                        </article>
+
+                        <article class="help-card">
+                            <span class="help-icon">💾</span>
+                            <h3>My bill will not save</h3>
+                            <ol>
+                                <li>Read the red message beside the field; it usually identifies the missing value.</li>
+                                <li>Confirm a batch is selected for every medicine.</li>
+                                <li>Check quantity, selling price, customer type and payment mode.</li>
+                                <li>Remove the line and add it again if the batch has no available stock.</li>
+                                <li>Check whether the day is already closed.</li>
+                            </ol>
+                            <p class="help-result"><strong>Before retrying:</strong> Search Invoice History in case the first click actually saved the bill.</p>
+                        </article>
+
+                        <article class="help-card">
+                            <span class="help-icon">🖨️</span>
+                            <h3>The printer did not print</h3>
+                            <ol>
+                                <li>Do not create the bill again.</li>
+                                <li>Open <strong>POS → Invoice History</strong>.</li>
+                                <li>Find the latest invoice and choose <strong>Reprint</strong>.</li>
+                                <li>If it still fails, print a test page from the operating system and confirm the selected printer, paper size and connection.</li>
+                            </ol>
+                            <p class="help-result"><strong>Remember:</strong> A printer problem does not automatically mean the invoice failed.</p>
+                        </article>
+
+                        <article class="help-card">
+                            <span class="help-icon">📦</span>
+                            <h3>My stock quantity is wrong</h3>
+                            <ol>
+                                <li>Identify the exact medicine, batch and unit that is wrong.</li>
+                                <li>Check Invoice History for sales and Purchase Register for inward stock.</li>
+                                <li>Check Sales Returns and Purchase Returns before adjusting anything.</li>
+                                <li>Use <strong>Inventory → Stock Entry / Adjustment</strong> only for a verified physical count difference.</li>
+                            </ol>
+                            <p class="help-result"><strong>Never fix stock by entering a fake purchase or sale.</strong> That changes your reports and tax data.</p>
+                        </article>
+
+                        <article class="help-card">
+                            <span class="help-icon">🧾</span>
+                            <h3>GST total or tax looks wrong</h3>
+                            <ol>
+                                <li>Check the item’s HSN, tax rate and taxable value.</li>
+                                <li>Check whether the customer/vendor state makes the transaction CGST + SGST or IGST.</li>
+                                <li>Compare the line-level totals with the source invoice.</li>
+                                <li>Correct the master data, then re-enter only the transaction that is genuinely wrong.</li>
+                            </ol>
+                            <p class="help-result"><strong>Do not manually force a tax total</strong> without identifying the line or master-data cause.</p>
+                        </article>
+
+                        <article class="help-card">
+                            <span class="help-icon">🌙</span>
+                            <h3>Day Closure is blocked</h3>
+                            <ol>
+                                <li>Return to the POS screen and complete or cancel any held/open bill.</li>
+                                <li>Check that cash, UPI, card and credit totals match your physical records.</li>
+                                <li>Resolve any pending return or payment message shown by the screen.</li>
+                                <li>Run the closure again. Use the EOD Master Guide below if the difference remains.</li>
+                            </ol>
+                        </article>
+
+                        <article class="help-card">
+                            <span class="help-icon">🔄</span>
+                            <h3>The application looks frozen</h3>
+                            <ol>
+                                <li>Wait briefly after a scan, report or save; large imports can take time.</li>
+                                <li>Do not click Save repeatedly.</li>
+                                <li>Check the relevant history list to see whether the action completed.</li>
+                                <li>If safe to do so, close and reopen the application, then verify the last transaction.</li>
+                                <li>If it repeats, open <strong>Support & Diagnostics</strong> and create a support bundle.</li>
+                            </ol>
+                        </article>
+
+                        <article class="help-card">
+                            <span class="help-icon">🛡️</span>
+                            <h3>Something is missing after restart</h3>
+                            <ol>
+                                <li>Confirm you opened the same store/company profile and machine.</li>
+                                <li>Check the relevant history/register before assuming data was lost.</li>
+                                <li>Do not restore a backup over the current database until you know which copy is correct.</li>
+                                <li>Open Support & Diagnostics and generate a support bundle.</li>
+                            </ol>
+                        </article>
+                    </div>
+
+                    <div class="support-handoff">
+                        <h3>If you still need help, send a useful support request</h3>
+                        <p>Send the screen name, the exact action you clicked, the invoice/purchase number, the medicine or batch involved, the message shown, and a screenshot. Also mention whether the issue happens every time or only once. This lets support diagnose the problem without asking you to repeat the whole story.</p>
+                        <div class="handoff-steps"><span>1. Stop repeating the action</span><span>2. Capture the exact message</span><span>3. Create a support bundle</span><span>4. Share the transaction number</span></div>
                     </div>
                 </section>
 
@@ -1234,7 +1413,7 @@
 
                     <div class="faq-item">
                         <h4>Can I use CredaERP if the internet goes down?</h4>
-                        <p>Absolutely. CredaERP is designed as an <strong>offline-first</strong> desktop application. The PostgreSQL database runs directly on your local hard drive. You can continue billing, purchasing, and managing stock indefinitely without an internet connection. Internet is only required for software updates and generating E-Invoices (IRN) if you cross the turnover threshold.</p>
+                        <p>Absolutely. CredaERP is designed as an <strong>offline-first</strong> desktop application. The PostgreSQL database runs directly on your local hard drive. You can continue billing, purchasing, and managing stock without an internet connection. Internet is mainly required for software updates and any online support or connected services you choose to use.</p>
                     </div>
 
                     <div class="faq-item">
