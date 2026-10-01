@@ -215,6 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const originalEl = document.getElementById(`${plan}-original`);
             const trialEl    = document.getElementById(`${plan}-trial-info`);
             const equivalentEl = document.getElementById(`${plan}-equivalent`);
+            const upgradeNoteEl = document.getElementById('premium-upgrade-note');
 
             if (!amountEl) return;
 
@@ -238,6 +239,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     trialEl.textContent         = '✨ 3 months free trial, then billed quarterly';
                     equivalentEl.textContent    = '';
                     equivalentEl.style.visibility = 'hidden';
+                }
+
+                if (upgradeNoteEl) {
+                    const premiumGap = Math.round((prices.premium - prices.growth) / (isYearly ? 12 : 3));
+                    upgradeNoteEl.textContent = `Only ₹${premiumGap.toLocaleString('en-IN')}/month more than Growth`;
                 }
 
                 amountEl.style.transform = 'translateY(0)';
