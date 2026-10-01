@@ -228,7 +228,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (isYearly) {
                     originalEl.textContent      = `₹${ORIGINALS_YEARLY[plan].toLocaleString('en-IN')} if billed quarterly`;
                     originalEl.style.visibility = 'visible';
-                    trialEl.textContent         = '🎉 Annual plan — save ~29%!';
+                    const savingsPercent = Math.round((1 - prices[plan] / ORIGINALS_YEARLY[plan]) * 100);
+                    trialEl.textContent         = `🎉 Annual plan — save ${savingsPercent}% vs quarterly billing`;
                     equivalentEl.textContent    = `₹${Math.round(prices[plan] / 12).toLocaleString('en-IN')}/month equivalent on annual billing`;
                     equivalentEl.style.visibility = 'visible';
                 } else {

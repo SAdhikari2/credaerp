@@ -1528,6 +1528,24 @@ footer {
     font-size: .88rem;
 }
 .pricing-value-note strong { color: #fff; }
+.renewal-promise {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 2rem;
+    align-items: center;
+    margin: 1rem auto 0;
+    max-width: 1000px;
+    padding: 2rem;
+    border: 1px solid rgba(96, 165, 250, .25);
+    border-radius: 22px;
+    background: linear-gradient(135deg, rgba(37, 99, 235, .12), rgba(34, 197, 94, .06));
+}
+.renewal-promise .section-kicker { text-align: left; margin-bottom: .5rem; }
+.renewal-promise h3 { font-size: 1.45rem; margin-bottom: .5rem; }
+.renewal-promise p:not(.section-kicker) { color: var(--text-secondary); font-size: .92rem; margin-bottom: 0; }
+.renewal-points { display: grid; gap: .7rem; }
+.renewal-points span { color: var(--text-secondary); font-size: .86rem; }
+.renewal-points b { color: #93c5fd; margin-right: .5rem; }
 .pricing-section::before {
     content: none;
 }
@@ -1554,4 +1572,5 @@ footer {
     .journey-card { min-height: auto; }
     .journey-card h3 { margin-top: 1.25rem; }
     .pricing-card.popular { transform: none; }
+    .renewal-promise { grid-template-columns: 1fr; padding: 1.5rem; }
 }
