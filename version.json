@@ -1,6 +1,6 @@
 {
   "version": "3.1.3",
-  "downloadUrlWindows": "https://credaerp.netlify.app/downloads/CredaERP-Windows.exe",
-  "downloadUrlMacIntel": "https://credaerp.netlify.app/downloads/CredaERP-macOS-Intel.dmg",
-  "downloadUrlMacSilicon": "https://credaerp.netlify.app/downloads/CredaERP-macOS-AppleSilicon.dmg"
+  "downloadUrlWindows": "https://github.com/SAdhikari2/medicines-catalog/releases/latest/download/CredaERP-Windows.exe",
+  "downloadUrlMacIntel": "https://github.com/SAdhikari2/medicines-catalog/releases/latest/download/CredaERP-macOS-Intel.dmg",
+  "downloadUrlMacSilicon": "https://github.com/SAdhikari2/medicines-catalog/releases/latest/download/CredaERP-macOS-AppleSilicon.dmg"
 }
