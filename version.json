@@ -1,6 +1,6 @@
 {
   "version": "3.1.4",
-  "downloadUrlWindows": "https://github.com/SAdhikari2/medicines-catalog/releases/latest/download/CredaERP-Windows.exe",
-  "downloadUrlMacIntel": "https://github.com/SAdhikari2/medicines-catalog/releases/latest/download/CredaERP-macOS-Intel.dmg",
-  "downloadUrlMacSilicon": "https://github.com/SAdhikari2/medicines-catalog/releases/latest/download/CredaERP-macOS-AppleSilicon.dmg"
+  "downloadUrlWindows": "https://github.com/credaerp-admin/medicines-catalog/releases/latest/download/CredaERP-Windows.exe",
+  "downloadUrlMacIntel": "https://github.com/credaerp-admin/medicines-catalog/releases/latest/download/CredaERP-macOS-Intel.dmg",
+  "downloadUrlMacSilicon": "https://github.com/credaerp-admin/medicines-catalog/releases/latest/download/CredaERP-macOS-AppleSilicon.dmg"
 }

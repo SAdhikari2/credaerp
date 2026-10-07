@@ -1,6 +1,6 @@
 # 🚀 CredaERP Landing Page
 
-A premium, high-conversion landing page designed for **[CredaERP](https://github.com/SAdhikari2/credaerp)**—a robust, offline-first business management software built specifically for Indian retail, pharmacy, and distribution businesses.
+A premium, high-conversion landing page designed for **[CredaERP](https://github.com/credaerp-admin/credaerp)**—a robust, offline-first business management software built specifically for Indian retail, pharmacy, and distribution businesses.
 
 This landing page is designed to wow visitors with modern, glassmorphism-inspired dark aesthetics, high-fidelity responsive components, and direct call-to-actions targeting early-adopter signups.
 
