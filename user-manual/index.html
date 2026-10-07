@@ -503,6 +503,7 @@
                 <li><a href="#migration">Safe Migration Guide</a></li>
                 <li><a href="#backup-restore">Disaster Recovery</a></li>
                 <li><a href="#support-diagnostics">Support Diagnostics</a></li>
+                <li><a href="#technical-reference">Technical Module Directory</a></li>
                 <li><a href="#checklists">Operational Checklists</a></li>
                 <li><a href="#keyboard-shortcuts">Keyboard Shortcuts</a></li>
                 <li><a href="#faq">Frequently Asked Questions</a></li>
@@ -515,7 +516,7 @@
         <main class="main-content">
             <header class="header">
                 <h1>CredaERP Operations Manual</h1>
-                <p>Your practical, step-by-step support guide for running CredaERP (v3.0.1). When you are unsure where to click, start with <strong>I’m Stuck — Fix It Now</strong>, then follow the exact workflow for your task.</p>
+                <p>Your practical, step-by-step support guide for running CredaERP (v3.1.4). When you are unsure where to click, start with <strong>I’m Stuck — Fix It Now</strong>, then follow the exact workflow for your task.</p>
                 <div class="callout info manual-start-callout">
                     <div class="callout-header">👋 Use this manual like a support engineer</div>
                     <p>Search the screen name, task or message you can see. Follow the numbered steps in order. If an action appears to fail, check the relevant history/register before trying it again. This prevents duplicate bills, purchases and stock changes.</p>
@@ -1353,9 +1354,163 @@
                     </div>
                 </section>
 
+                <!-- Technical Module Directory -->
+                <section id="technical-reference">
+                    <h2>15. Technical Module Directory & Support Playbooks</h2>
+                    <p>This is the technical reference for every major workspace visible in the CredaERP application. Each entry explains <strong>where to click</strong>, <strong>why to use it</strong>, <strong>what result to expect</strong>, and <strong>what to check when the result is not correct</strong>. Menu names may be hidden by user permissions; ask an administrator to confirm the role before assuming that a feature is missing.</p>
+
+                    <div class="callout info">
+                        <div class="callout-header">🧭 How to use this directory</div>
+                        <p>Search this page using the exact menu name, an error word, or the business outcome you want. For example, search <em>IRN</em>, <em>stock forecast</em>, <em>user access</em>, <em>mobile app</em>, <em>printer</em>, or <em>journal voucher</em>. Follow the workflow in order and record the result before trying a second save.</p>
+                    </div>
+
+                    <h3>Financials, accounting and statutory operations</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead><tr><th>Workspace</th><th>Where to click</th><th>Use it for / expected result</th><th>If something is wrong</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>E-Invoice (IRN)</strong></td><td>FINANCIALS → E-Invoice (IRN)</td><td>Review eligible B2B invoices, validate customer GSTIN and generate or track IRN/e-invoice data where configured.</td><td>Check GSTIN length/state code, customer master data, invoice status and internet/API configuration. Do not regenerate an IRN without checking whether one already exists.</td></tr>
+                                <tr><td><strong>CA Dashboard</strong></td><td>FINANCIALS → CA Dashboard</td><td>Review accounting, tax, revenue, expense, receivable and payable indicators before sharing data with an accountant.</td><td>Confirm the date range, day closures and completed purchase/sales entries. Compare a total with the underlying register before treating it as a discrepancy.</td></tr>
+                                <tr><td><strong>Journal Voucher</strong></td><td>FINANCIALS → Journal Voucher</td><td>Record an approved accounting adjustment that cannot be represented as a sale, purchase, payment or stock transaction.</td><td>Use an explanation, supporting document and balanced debit/credit lines. Never use a journal entry to repair physical stock; use Stock Adjustment.</td></tr>
+                                <tr><td><strong>GST Filing</strong></td><td>FINANCIALS → GST Filing</td><td>Validate the period, correct master-data errors, review GSTR-1/GSTR-3B and reconcile GSTR-2B working data.</td><td>Complete data entry and EOD first. Resolve high-severity validation errors, then regenerate the period output instead of editing exported files manually.</td></tr>
+                                <tr><td><strong>Financial Year End</strong></td><td>MAINTENANCE → Financial Year End</td><td>Close a financial year after all sales, purchases, returns, payments, GST work and backups have been reviewed.</td><td>Take a verified backup first. Do not run year-end merely because the calendar changed; confirm that the accountant has approved the closing balances.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Insights, intelligence and pharmacy controls</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead><tr><th>Workspace</th><th>Where to click</th><th>Use it for / expected result</th><th>Technical interpretation</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Business Assistant</strong></td><td>INSIGHTS & AI → Business Assistant or the chat button</td><td>Ask business questions in ordinary English, Hinglish or Banglish about stock, sales, profit, customers, suppliers, expiry and workflow.</td><td>Responses are based on the signed-in tenant and read-only business queries. Treat an answer as an operational explanation; open the referenced register for an audit trail.</td></tr>
+                                <tr><td><strong>Stock Forecasting</strong></td><td>INSIGHTS & AI → Stock Forecasting</td><td>Review average daily sales, days of cover, stock-out risk and suggested reorder quantities.</td><td>A forecast is a decision aid, not a purchase order. Confirm supplier lead time, current physical stock, open purchase orders and expiry before ordering.</td></tr>
+                                <tr><td><strong>Clinical Analytics</strong></td><td>INSIGHTS & AI → Clinical Analytics</td><td>Review pharmacy-specific patterns such as medicine movement, prescription-related information and clinical analytics available to the tenant.</td><td>Use minimum necessary patient information. Restrict access to authorized users and do not share screenshots containing patient identifiers in public channels.</td></tr>
+                                <tr><td><strong>Reports & Analytics</strong></td><td>INSIGHTS & AI → Reports & Analytics</td><td>Generate sales, purchase, inventory, expiry, margin, customer/vendor and compliance reports for a selected period.</td><td>Always record the selected dates, filters and export time. Different filters can legitimately produce different totals.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Administration, security and setup</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead><tr><th>Workspace</th><th>Where to click</th><th>Use it for / expected result</th><th>Safe operating rule</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>System Settings</strong></td><td>MAINTENANCE → System Settings</td><td>Configure company profile, tax, masters, database, printer, backup, user and application settings.</td><td>Change one setting at a time, save, restart only when instructed, and record the old value before changing a production setting.</td></tr>
+                                <tr><td><strong>User Management</strong></td><td>System Settings → User Management</td><td>Create users, assign roles and limit access to sensitive sales, financial, patient and administration functions.</td><td>Use named accounts; never share the administrator password. Remove or disable leavers promptly and review privileged access regularly.</td></tr>
+                                <tr><td><strong>Training Mode</strong></td><td>Top bar → Training Mode</td><td>Practice billing, purchase and workflow steps without confusing training activity with production operations.</td><td>Confirm the visible TRAINING SANDBOX badge before entering test data. Switch back only after clearing or documenting the training work.</td></tr>
+                                <tr><td><strong>Database Settings</strong></td><td>System Settings → Database</td><td>Review connection status, create a backup and perform an authorized restore.</td><td>Backups must be copied away from the computer. A restore is a destructive replacement operation; stop work, verify the backup, and restart the application after restore.</td></tr>
+                                <tr><td><strong>Diagnostics</strong></td><td>MAINTENANCE → Diagnostics</td><td>Check database/backup health and create a support bundle for technical investigation.</td><td>Send the smallest relevant log range. Never publish database passwords, API keys, full patient data or unrestricted database exports in a support message.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Devices, printing and mobile operations</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead><tr><th>Task</th><th>Where to click</th><th>Expected result</th><th>First technical checks</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Printer setup</strong></td><td>System Settings → Printer Settings</td><td>Select the invoice/receipt printer, paper format and print behavior.</td><td>Print an operating-system test page, confirm the correct default printer, check paper size/driver and reprint an existing invoice rather than creating a new sale.</td></tr>
+                                <tr><td><strong>Barcode printing</strong></td><td>Inventory → barcode/label printing tools</td><td>Print labels for selected medicines or batches.</td><td>Confirm barcode, item name, batch and expiry before printing. Test one label for alignment and scanner readability.</td></tr>
+                                <tr><td><strong>Install Mobile App</strong></td><td>MAINTENANCE → Install Mobile App</td><td>Open the public mobile release download and install the companion Android app.</td><td>Use the latest public release, verify that the download completed in the phone’s Downloads folder, enable installation permission for the browser only when prompted, and pair through the in-app QR/pairing flow.</td></tr>
+                                <tr><td><strong>Scanner pairing</strong></td><td>System Settings → scanner/pairing tools</td><td>Connect an authorized phone on the same local network for barcode scanning and cart synchronization.</td><td>Check Wi-Fi network, desktop firewall, pairing code/QR freshness and that the desktop service is running. Never expose the pairing code publicly.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Access, license and audit procedures</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead><tr><th>Issue or task</th><th>Where to click</th><th>What to do</th><th>Expected result / support evidence</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>First launch or license activation</strong></td><td>License Activation screen</td><td>Record the displayed Machine ID, paste the license key supplied for that machine, choose <strong>Activate License</strong>, and verify the pharmacy name, expiry and license type.</td><td>The license status becomes active and the workspace can continue to login. Never share the license key in a public issue or chat.</td></tr>
+                                <tr><td><strong>Cannot sign in</strong></td><td>Login screen</td><td>Check username spelling, Caps Lock warning, database/system indicators and whether the account is locked. Use <strong>Forgot password?</strong> to reach the support reset instructions.</td><td>Do not repeatedly guess passwords. Send the exact message, username (not the password), time and health-indicator state to support.</td></tr>
+                                <tr><td><strong>Account locked</strong></td><td>Login screen → Account Locked</td><td>Wait for the security lockout period or contact an administrator/support desk. Do not create a second account to bypass the control.</td><td>Preserves the security audit trail. Support may need the affected username and approximate lockout time.</td></tr>
+                                <tr><td><strong>Investigate who changed something</strong></td><td>System Settings → Audit Logs</td><td>Choose From Date, To Date, User Account and Action Type, select <strong>Apply</strong>, review the module/details columns, and use <strong>Export CSV</strong> only for an authorized investigation.</td><td>Provides timestamped evidence of critical operations. Keep exported logs protected because they may contain business-sensitive details.</td></tr>
+                                <tr><td><strong>Training versus production</strong></td><td>Main window top bar → Training Mode</td><td>Before entering any transaction, verify whether the environment label says Production or the visible badge says TRAINING SANDBOX.</td><td>Prevents test transactions in production and prevents real transactions being mistaken for training data. Include the environment in every support report.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Inventory control procedures</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead><tr><th>Situation</th><th>Where to click</th><th>Procedure</th><th>Business and audit effect</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Opening stock or non-vendor inward</strong></td><td>Inventory → Stock → Opening Stock / Import</td><td>Select the item, enter batch, expiry, quantity, purchase rate, MRP and selling rate, then choose <strong>Save Opening Stock</strong>. For many items, use Bulk CSV Import with the displayed column order.</td><td>Adds stock without creating a vendor bill. Use Procurement for a real supplier invoice so payable and tax records are correct.</td></tr>
+                                <tr><td><strong>Physical count differs from system</strong></td><td>Inventory → Stock → Stock Adjustment</td><td>Search the item, compare System Qty with Physical Qty, enter a reason such as damage, donation or found stock, add a reference if available, then save all adjustments.</td><td>Changes the inventory balance with an explicit reason. Do not silently edit the item master or use a journal voucher to hide a count difference.</td></tr>
+                                <tr><td><strong>Expiry or short-expiry stock</strong></td><td>Inventory → Stock → Expiry Issue / Expiry Register</td><td>Filter by expiry window, select the vendor, record the credit-note/debit-note reference and remarks, then process the return. Use the register to review what remains unresolved.</td><td>Creates an operational trail for stock removed because of expiry. Verify the physical batch and vendor document before processing.</td></tr>
+                                <tr><td><strong>Shortage to purchase order</strong></td><td>Inventory → Stock → Shortage</td><td>Review auto-flagged shortages, add an item and quantity when needed, assign a vendor, then choose <strong>Process / Place Order</strong>.</td><td>Turns a stock risk into a procurement task. Confirm lead time and existing open orders before placing a duplicate order.</td></tr>
+                                <tr><td><strong>Item cannot be found</strong></td><td>Inventory → Inventory List</td><td>Search by item name, barcode or generic name. Check category/status filters, then use Refresh. If it is genuinely missing, open Setup → Item Setup and verify the item is active.</td><td>Prevents duplicate medicines caused by searching with the wrong filter or spelling. Verify barcode, pack size and batch before adding another item.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Customer, vendor and settlement procedures</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead><tr><th>Task</th><th>Where to click</th><th>Required information</th><th>Expected result / common mistake</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Receive customer dues</strong></td><td>Customers → Customer Payment</td><td>Select the customer, review Outstanding, optionally select the invoice, enter payment date, amount, mode and reference/notes, then choose <strong>Confirm Receipt</strong>.</td><td>Reduces the customer balance and creates a receipt. Do not create a new sale to represent a payment.</td></tr>
+                                <tr><td><strong>Pay a vendor</strong></td><td>Vendors → Vendor Payment</td><td>Select the vendor, review payable balance, choose the relevant purchase if available, enter date, amount, payment mode and reference, then save.</td><td>Reduces the vendor payable and records settlement. Match the bank/UPI/cheque reference to the real payment.</td></tr>
+                                <tr><td><strong>Review old transactions</strong></td><td>Sales/Purchase → Invoice History or Purchase Invoice History</td><td>Use date range, invoice number, customer/vendor and status filters. Open the existing document before attempting a correction.</td><td>Provides the source document for reprint, return, review or support evidence. Never create a second invoice because the first print window failed.</td></tr>
+                                <tr><td><strong>Customer or vendor missing</strong></td><td>Customers / Vendors → Add New</td><td>Use the legal name, phone, address, GSTIN when applicable, credit terms and contact details.</td><td>Improves statements and tax reporting. Avoid duplicate parties; search first and update the existing record where permitted.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Master data dependency map</h3>
+                    <p>Master data is the foundation for correct bills, stock and reports. Create the parent value before the dependent value, and decide naming/barcode standards before importing many records.</p>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead><tr><th>Master</th><th>Where to click</th><th>Used by</th><th>What breaks when it is wrong</th></tr></thead>
+                            <tbody>
+                                <tr><td>Company Profile</td><td>System Settings → Company Profile</td><td>Invoice header, GST identity, address, reports and printouts.</td><td>Wrong legal identity or GST details on documents; correct this before production billing.</td></tr>
+                                <tr><td>Tax / HSN</td><td>Inventory → Setup → Tax Setup</td><td>Item tax calculation, GST reports and e-invoice eligibility.</td><td>Incorrect tax totals, validation errors or reconciliation differences.</td></tr>
+                                <tr><td>Category / Subcategory / Group</td><td>Inventory → Setup</td><td>Inventory filters, reports, forecasting and item organization.</td><td>Items appear under the wrong filter or analytics group.</td></tr>
+                                <tr><td>Brand / Manufacturer / Generic Content</td><td>Inventory → Setup</td><td>Medicine search, clinical views, supplier comparison and duplicate prevention.</td><td>Search and clinical information becomes incomplete or ambiguous.</td></tr>
+                                <tr><td>Unit / Pack Size / Variant</td><td>Inventory → Setup → Unit or Item Setup</td><td>Quantity conversion, pricing, stock and invoice line display.</td><td>Pack-to-unit quantities and margins can be wrong; verify before first sale.</td></tr>
+                                <tr><td>Rack / Schedule / Doctor</td><td>Inventory → Setup</td><td>Store location, regulated-item classification and clinical reporting.</td><td>Picking, compliance registers or analytics lose important context.</td></tr>
+                                <tr><td>Item / Medicine</td><td>Inventory → Setup → Item Setup</td><td>POS, procurement, stock, expiry, barcode and reports.</td><td>Duplicate or inactive items create stock fragmentation and billing confusion.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Transaction lifecycle: what each action changes</h3>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead><tr><th>Action</th><th>Stock</th><th>Financial/tax effect</th><th>Recommended verification</th></tr></thead>
+                            <tbody>
+                                <tr><td>Sale / POS bill</td><td>Decreases by the sold batch quantity.</td><td>Creates revenue, customer balance/payment and output-tax data.</td><td>Check invoice history, stock movement and receipt.</td></tr>
+                                <tr><td>Purchase / procurement</td><td>Increases by the received batch quantity.</td><td>Creates vendor payable, purchase cost and eligible input-tax data.</td><td>Check purchase history, batch/expiry and vendor balance.</td></tr>
+                                <tr><td>Sales return</td><td>Restores accepted quantity after inspection.</td><td>Reverses/reduces sale and related tax according to the return workflow.</td><td>Check return reference, physical batch and customer balance.</td></tr>
+                                <tr><td>Purchase return / expiry return</td><td>Decreases returned batch quantity.</td><td>Reduces vendor payable and handles the applicable tax/credit-note effect.</td><td>Check vendor document number and expiry/return register.</td></tr>
+                                <tr><td>Stock adjustment</td><td>Moves system quantity to the physical count.</td><td>Records an operational adjustment; it is not a sale or purchase.</td><td>Check reason, reference and audit log.</td></tr>
+                                <tr><td>Payment receipt</td><td>No stock change.</td><td>Reduces customer/vendor outstanding according to the payment direction.</td><td>Match amount, mode and external transaction reference.</td></tr>
+                                <tr><td>Day Closure</td><td>Locks/reconciles the business day according to configured controls.</td><td>Finalizes the day’s operational and financial review.</td><td>Resolve pending transactions and retain the closure evidence.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h3>Technical support handoff: what to send</h3>
+                    <div class="step-card">
+                        <div class="step-number">SUPPORT</div>
+                        <h4>Send evidence, not a description alone</h4>
+                        <ol>
+                            <li>State the business goal: what were you trying to complete?</li>
+                            <li>State the exact menu path and button clicked.</li>
+                            <li>State the date/time, invoice or batch number, and whether the system was in Production or Training Mode.</li>
+                            <li>Copy the exact error text or attach a screenshot with passwords, API keys and unnecessary patient data hidden.</li>
+                            <li>Say whether the transaction appears in history. This tells support whether the issue is a display, print or save problem.</li>
+                            <li>Attach a Diagnostics support bundle only after checking its contents and using the smallest useful log range.</li>
+                        </ol>
+                        <p><strong>Support confidence rule:</strong> every issue can be reduced to a reproducible action, an expected result, an actual result and evidence. This makes resolution faster and creates a dependable audit trail.</p>
+                    </div>
+                </section>
+
                 <!-- Checklists -->
                 <section id="checklists">
-                    <h2>15. Operational Checklists</h2>
+                    <h2>16. Operational Checklists</h2>
                     
                     <h3>☀️ Opening the Shop</h3>
                     <ul class="checklist">
@@ -1382,7 +1537,7 @@
                 
                 <!-- Keyboard Shortcuts -->
                 <section id="keyboard-shortcuts">
-                    <h2>16. Keyboard Shortcuts Reference</h2>
+                    <h2>17. Keyboard Shortcuts Reference</h2>
                     <p>Memorize these to operate the pharmacy at maximum speed without a mouse.</p>
                     <div class="table-wrapper">
                         <table>
@@ -1407,7 +1562,7 @@
 
                 <!-- FAQ -->
                 <section id="faq">
-                    <h2>17. Frequently Asked Questions (FAQ)</h2>
+                    <h2>18. Frequently Asked Questions (FAQ)</h2>
 
 
 
@@ -1429,8 +1584,8 @@
 
                 <!-- Release Notes -->
                 <section id="release-notes">
-                    <h2>18. Release Notes (v3.0.1)</h2>
-                    <p>Welcome to CredaERP v3.0.1. This release focuses on rock-solid data integrity and GST compliance.</p>
+                    <h2>19. Release Notes (v3.1.4)</h2>
+                    <p>Welcome to CredaERP v3.1.4. This release focuses on data integrity, GST compliance, pharmacy workflows and operational reliability.</p>
                     <ul>
                         <li><strong>Fixed:</strong> Pack-size decimal truncation. Inventory math now utilizes strict Big-Decimal arithmetic to prevent losing fractional tablets during conversions.</li>
                         <li><strong>Fixed:</strong> Backup Restore Deadlock. The database connection pool now gracefully shuts down prior to pg_restore, preventing locking errors during disaster recovery.</li>
@@ -1442,7 +1597,7 @@
 
                 <!-- Contact Us -->
                 <section id="contact-us">
-                    <h2>19. Contact & Support</h2>
+                    <h2>20. Contact & Support</h2>
                     <p>If you encounter a database corruption error, need license assistance, or have operational issues not covered in this manual, please reach out to our support team.</p>
                     
                     <div class="scenario-box">
